@@ -21,7 +21,6 @@ function startAutocycle(interval, pics, clickConfig) {
 
 function handleClick(aTags, clickConfig) {
   aTags.forEach((a, i) => {
-    a.querySelector('img').removeAttribute('loading');
     a.addEventListener('click', () => {
       clickConfig.isImageClicked = true;
       if (clickConfig.autocycleInterval) clearInterval(clickConfig.autocycleInterval);
@@ -95,6 +94,7 @@ export default async function decorateGenfill(el) {
       : interactiveContainer.lastElementChild;
     media.classList.add(`${v}-only`);
     if (defineDeviceByScreenSize() === v.toUpperCase()) {
+      media.querySelectorAll('img').forEach((img) => img.removeAttribute('loading'))
       setTimeout(() => {
         const aTags = media.querySelectorAll('a');
         startAutocycle(intervalTime, aTags, clickConfig);
