@@ -3,9 +3,9 @@ import { createEnticement } from '../interactive-elements/interactive-elements.j
 import defineDeviceByScreenSize from '../../scripts/decorate.js';
 
 function handleTransition(pics, index) {
+  pics[index].style.opacity = 0;
   const nextIndex = (index + 1) % pics.length;
   pics[nextIndex].style.opacity = 1;
-  pics[index].style.opacity = 0;
   return nextIndex;
 }
 
@@ -21,6 +21,7 @@ function startAutocycle(interval, pics, clickConfig) {
 
 function handleClick(aTags, clickConfig) {
   aTags.forEach((a, i) => {
+    a.querySelector('img').removeAttribute('loading');
     a.addEventListener('click', () => {
       clickConfig.isImageClicked = true;
       if (clickConfig.autocycleInterval) clearInterval(clickConfig.autocycleInterval);
@@ -41,10 +42,12 @@ async function addEnticement(container, enticement, mode) {
   tabletMedia?.insertBefore(entcmtEl.cloneNode(true), tabletMedia.firstElementChild);
 }
 
-function removePTags(media, vi, createTag) {
+async function removePTags(media, vi) {
   const heading = media.closest('.foreground').querySelector('h1, h2, h3, h4, h5, h6');
   const hText = heading.id
     .split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join('');
+  const miloLibs = getLibs();
+  const { createTag } = await import(`${miloLibs}/utils/utils.js`);
   const pics = media.querySelectorAll('picture');
   pics.forEach((pic, index) => {
     if (pic.closest('p')) pic.closest('p').remove();
@@ -59,15 +62,7 @@ function removePTags(media, vi, createTag) {
   });
 }
 
-function somefunc(mediaEl, index, clickConfig, createTag) {
-  removePTags(mediaEl, index, createTag);
-  const aTags = mediaEl.querySelectorAll('a');
-  handleClick(aTags, clickConfig);
-}
-
 export default async function decorateGenfill(el) {
-  const miloLibs = getLibs();
-  const { createTag } = await import(`${miloLibs}/utils/utils.js`);
   const clickConfig = {
     autocycleIndex: 0,
     autocycleInterval: null,
@@ -87,14 +82,17 @@ export default async function decorateGenfill(el) {
   [enticementMode, enticement, timer].forEach((i) => i?.remove());
   const viewports = ['mobile', 'tablet', 'desktop'];
   const mediaElements = interactiveContainer.querySelectorAll('.media');
-  mediaElements.forEach((mediaEl, i) => somefunc(mediaEl, i, clickConfig, createTag));
+  mediaElements.forEach(async (mediaEl, index) => {
+    await removePTags(mediaEl, index);
+    const aTags = mediaEl.querySelectorAll('a');
+    handleClick(aTags, clickConfig);
+  });
   viewports.forEach((v, vi) => {
     const media = mediaElements[vi]
       ? mediaElements[vi]
       : interactiveContainer.lastElementChild;
     media.classList.add(`${v}-only`);
     if (defineDeviceByScreenSize() === v.toUpperCase()) {
-      media.querySelectorAll('img').forEach((img) => { img.setAttribute('loading', 'eager'); img.setAttribute('fetchpriority', 'high');});
       setTimeout(() => {
         const aTags = media.querySelectorAll('a');
         startAutocycle(intervalTime, aTags, clickConfig);
