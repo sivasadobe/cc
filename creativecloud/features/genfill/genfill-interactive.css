@@ -4,7 +4,7 @@
 .genfill .mobile-only {
   -webkit-tap-highlight-color: transparent;
   user-select: none;
-  display: none;
+  opacity: 0;
 }
 
 .genfill .enticement-detail,
