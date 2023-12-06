@@ -60,8 +60,8 @@ function removePTags(media, vi, createTag) {
   });
 }
 
-function somefunc(mediaEl, index, createTag) {
-  removePTags(mediaEl, index, createTag);
+function somefunc(mediaEl, index, clickConfig, createTag) {
+  removePTags(mediaEl, index, clickConfig, createTag);
   const aTags = mediaEl.querySelectorAll('a');
   handleClick(aTags, clickConfig);
 }
@@ -88,7 +88,7 @@ export default async function decorateGenfill(el) {
   [enticementMode, enticement, timer].forEach((i) => i?.remove());
   const viewports = ['mobile', 'tablet', 'desktop'];
   const mediaElements = interactiveContainer.querySelectorAll('.media');
-  mediaElements.forEach((mediaEl, i) => somefunc(mediaEl, i, createTag));
+  mediaElements.forEach((mediaEl, i) => somefunc(mediaEl, i, clickConfig, createTag));
   viewports.forEach((v, vi) => {
     const media = mediaElements[vi]
       ? mediaElements[vi]
