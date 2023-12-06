@@ -1,3 +1,11 @@
+.media a {
+  transition: opacity 0.5s ease;
+}
+
+a.active {
+  opacity: 1;
+}
+
 .genfill .desktop-only, 
 .genfill .tablet-only, 
 .genfill .mobile-only {
