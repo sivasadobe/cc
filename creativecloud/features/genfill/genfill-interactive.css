@@ -1,4 +1,3 @@
-
 .genfill .desktop-only, 
 .genfill .tablet-only, 
 .genfill .mobile-only {
@@ -14,7 +13,6 @@
 }
 
 .genfill .media a {
-  /* display: none; */
   opacity: 0;
 }
 
@@ -42,12 +40,12 @@
 
 @media screen and (max-width: 600px) {
   .genfill .mobile-only a {
-    display: none;
+    opacity: 0;
   }
 
   .genfill .media.mobile-only, 
   .genfill .media.mobile-only a:first-of-type {
-    display: block;
+    opacity: 1;
   }
 
   .genfill .enticement {
@@ -57,12 +55,12 @@
 
 @media screen and (min-width: 600px) and (max-width: 1200px) {
   .genfill .tablet-only a {
-    display: none;
+    opacity: 0;
   }
 
   .genfill .tablet-only, 
   .genfill .tablet-only a:first-of-type {
-    display: block;
+    opacity: 1;
   }
 
   .enticement-arrow {    
