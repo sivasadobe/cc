@@ -4,8 +4,8 @@ import defineDeviceByScreenSize from '../../scripts/decorate.js';
 
 function handleTransition(pics, index) {
   const nextIndex = (index + 1) % pics.length;
-  pics[nextIndex].style.opacity = 0;
-  pics[index].style.opacity = 1;
+  pics[nextIndex].style.opacity = 1;
+  pics[index].style.opacity = 0;
   return nextIndex;
 }
 
