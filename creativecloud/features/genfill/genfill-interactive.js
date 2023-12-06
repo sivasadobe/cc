@@ -3,9 +3,9 @@ import { createEnticement } from '../interactive-elements/interactive-elements.j
 import defineDeviceByScreenSize from '../../scripts/decorate.js';
 
 function handleTransition(pics, index) {
-  pics[index].style.display = 'none';
   const nextIndex = (index + 1) % pics.length;
   pics[nextIndex].style.display = 'block';
+  pics[index].style.display = 'none';
   return nextIndex;
 }
 
