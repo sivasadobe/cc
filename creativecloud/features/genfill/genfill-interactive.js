@@ -46,7 +46,6 @@ function removePTags(media, vi, createTag) {
   const heading = media.closest('.foreground').querySelector('h1, h2, h3, h4, h5, h6');
   const hText = heading.id
     .split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join('');
-  const miloLibs = getLibs();
   const pics = media.querySelectorAll('picture');
   pics.forEach((pic, index) => {
     if (pic.closest('p')) pic.closest('p').remove();
@@ -68,6 +67,7 @@ function somefunc(mediaEls, createTag) {
 }
 
 export default async function decorateGenfill(el) {
+  const miloLibs = getLibs();
   const { createTag } = await import(`${miloLibs}/utils/utils.js`);
   const clickConfig = {
     autocycleIndex: 0,
