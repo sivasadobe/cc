@@ -24,7 +24,7 @@ function handleClick(a, i, clickConfig) {
   a.addEventListener('click', () => {
     clickConfig.isImageClicked = true;
     if (clickConfig.autocycleInterval) clearInterval(clickConfig.autocycleInterval);
-    // handleTransition(aTags, i);
+    handleTransition(aTags, i);
   });
 }
 
@@ -40,7 +40,7 @@ async function addEnticement(container, enticement, mode) {
   tabletMedia?.insertBefore(entcmtEl.cloneNode(true), tabletMedia.firstElementChild);
 }
 
-async function removePTags(media, vi) {
+async function removePTags(mediaElements, vi) {
   const heading = media.closest('.foreground').querySelector('h1, h2, h3, h4, h5, h6');
   const hText = heading.id
     .split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join('');
@@ -57,7 +57,7 @@ async function removePTags(media, vi) {
     a.setAttribute('daa-ll', altTxt);
     a.appendChild(pic);
     media.appendChild(a);
-    handleClick(a, clickConfig);
+    handleClick(a, index, clickConfig);
   });
 }
 
@@ -81,11 +81,13 @@ export default async function decorateGenfill(el) {
   [enticementMode, enticement, timer].forEach((i) => i?.remove());
   const viewports = ['mobile', 'tablet', 'desktop'];
   const mediaElements = interactiveContainer.querySelectorAll('.media');
-  mediaElements.forEach(async (mediaEl, index) => {
-    await removePTags(mediaEl, index);
-    const aTags = mediaEl.querySelectorAll('a');
-    handleClick(aTags, clickConfig);
-  });
+  await removePTags(mediaElements, index);
+  // mediaElements.forEach(async (mediaEl, index) => {
+    
+  //   const aTags = mediaEl.querySelectorAll('a');
+  //   handleClick(aTags, clickConfig);
+  // });
+  handleTransition(mediaEl.querySelectorAll('a');, )
   viewports.forEach((v, vi) => {
     const media = mediaElements[vi]
       ? mediaElements[vi]
