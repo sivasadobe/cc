@@ -15,7 +15,7 @@
 
 .genfill .media a {
   /* display: none; */
-  opacity: 0
+  opacity: 0;
 }
 
 .enticement-arrow {
@@ -83,12 +83,12 @@
 
 @media screen and (min-width: 1200px) {
   .genfill .desktop-only a {
-    display: none;
+    opacity: 0;
   }
 
   .genfill .desktop-only, 
   .genfill .desktop-only a:first-of-type {
-    display: block;
+    opacity: 1;
   }
 
   .enticement-arrow {
