@@ -61,7 +61,7 @@ function removePTags(media, vi, createTag) {
 }
 
 function somefunc(mediaEl, index, clickConfig, createTag) {
-  removePTags(mediaEl, index, clickConfig, createTag);
+  removePTags(mediaEl, index, createTag);
   const aTags = mediaEl.querySelectorAll('a');
   handleClick(aTags, clickConfig);
 }
