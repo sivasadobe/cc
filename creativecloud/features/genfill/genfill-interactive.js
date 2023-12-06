@@ -19,14 +19,12 @@ function startAutocycle(interval, pics, clickConfig) {
   }, interval);
 }
 
-function handleClick(aTags, clickConfig) {
-  aTags.forEach((a, i) => {
-    a.querySelector('img').removeAttribute('loading');
-    a.addEventListener('click', () => {
-      clickConfig.isImageClicked = true;
-      if (clickConfig.autocycleInterval) clearInterval(clickConfig.autocycleInterval);
-      handleTransition(aTags, i);
-    });
+function handleClick(a, i, clickConfig) {
+  a.querySelector('img').removeAttribute('loading');
+  a.addEventListener('click', () => {
+    clickConfig.isImageClicked = true;
+    if (clickConfig.autocycleInterval) clearInterval(clickConfig.autocycleInterval);
+    // handleTransition(aTags, i);
   });
 }
 
@@ -59,6 +57,7 @@ async function removePTags(media, vi) {
     a.setAttribute('daa-ll', altTxt);
     a.appendChild(pic);
     media.appendChild(a);
+    handleClick(a, clickConfig);
   });
 }
 
