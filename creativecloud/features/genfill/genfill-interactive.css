@@ -1,7 +1,3 @@
-.media a {
-  transition: opacity 0.5s ease;
-}
-
 a.active {
   opacity: 1;
 }
@@ -21,7 +17,8 @@ a.active {
 }
 
 .genfill .media a {
-  display: none;
+  /* display: none; */
+  opacity: 0
 }
 
 .enticement-arrow {
