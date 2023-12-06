@@ -95,7 +95,7 @@ export default async function decorateGenfill(el) {
       : interactiveContainer.lastElementChild;
     media.classList.add(`${v}-only`);
     if (defineDeviceByScreenSize() === v.toUpperCase()) {
-      media.querySelectorAll('img').forEach((img) => img.removeAttribute('loading'));
+      // media.querySelectorAll('img').forEach((img) => img.removeAttribute('loading'));
       setTimeout(() => {
         const aTags = media.querySelectorAll('a');
         startAutocycle(intervalTime, aTags, clickConfig);
