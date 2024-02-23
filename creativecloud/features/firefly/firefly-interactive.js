@@ -5,17 +5,15 @@ function focusOnInput(media, createTag) {
   const input = media.querySelector('.prompt-text');
   if (input) {
     const device = defineDeviceByScreenSize();
-    if(device === 'MOBILE' || device === 'TABLET'){
-      const blinkingCursor = createTag('div', { class: 'blinking-cursor' });
+    const blinkingCursor = createTag('div', { class: 'blinking-cursor' });
+    if (input.classList.contains('light')) blinkingCursor.classList.add('blink-light');
+    if(device === 'MOBILE' || device === 'TABLET'){    
       input.insertAdjacentElement('beforebegin', blinkingCursor);
-      if (input.classList.contains('light')) blinkingCursor.classList.add('blink-light');
     }
     input.focus();
     input.addEventListener('focusout', () => {
-      if (document.querySelector('.locale-modal-v2')) {
-        const blinkingCursor = createTag('div', { class: 'blinking-cursor' });
+      if (document.querySelector('.locale-modal-v2') && (device != 'MOBILE' || device != 'TABLET')) {
         input.insertAdjacentElement('beforebegin', blinkingCursor);
-        if (input.classList.contains('light')) blinkingCursor.classList.add('blink-light');
       }
     }, { once: true });
     input.addEventListener('click', () => { document.querySelector('.blinking-cursor')?.remove(); });
