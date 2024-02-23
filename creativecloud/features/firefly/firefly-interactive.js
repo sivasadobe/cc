@@ -1,8 +1,15 @@
 import { getLibs } from '../../scripts/utils.js';
+const { default: defineDeviceByScreenSize } = await import('../../scripts/decorate.js');
 
 function focusOnInput(media, createTag) {
   const input = media.querySelector('.prompt-text');
   if (input) {
+    const device = defineDeviceByScreenSize();
+    if(device === 'MOBILE' || device === 'TABLET'){
+      const blinkingCursor = createTag('div', { class: 'blinking-cursor' });
+      input.insertAdjacentElement('beforebegin', blinkingCursor);
+      if (input.classList.contains('light')) blinkingCursor.classList.add('blink-light');
+    }
     input.focus();
     input.addEventListener('focusout', () => {
       if (document.querySelector('.locale-modal-v2')) {
