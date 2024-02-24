@@ -176,7 +176,6 @@ export default async function setInteractiveFirefly(el) {
   const teOption = media.querySelector('.TextEffects');
   const firstOption = media.querySelector('.selector-tray > button');
   hideRemoveElements(firstOption, media, mediaP);
-
   // Create prompt field for first option on page load
   const firstOptionDetail = allP[3].innerText.split('|');
   const mode = firstOption.classList.contains('GenerativeFill') ? 'genfill' : interactiveElemMode;
