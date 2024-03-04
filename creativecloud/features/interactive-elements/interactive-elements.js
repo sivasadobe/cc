@@ -13,6 +13,11 @@ export async function createPromptField(prompt, buttonText, mode, trackingValue 
   } else if (mode === 'genfill') {
     promptButton.setAttribute('id', 'genfill');
     promptField.classList.remove('promptbar');
+  } else if (mode === 'ff-masonary') {
+    promptField.classList.remove('promptbar');
+    promptField.classList.add('ff-masonary-promptbar');
+    promptInput.classList.remove('prompt-text');
+    promptInput.classList.add('ff-masonary-prompttext');
   }
   if (mode !== 'genfill') {
     promptField.append(promptInput);
@@ -29,7 +34,8 @@ export async function createPromptField(prompt, buttonText, mode, trackingValue 
   }
   promptField.append(promptButton);
   const device = defineDeviceByScreenSize();
-  if (device === 'TABLET') promptButton.classList.add('button-l');
+  if (device === 'TABLET' && mode === 'ff-masonary') promptButton.classList.add('button-xl');
+  else if (device === 'TABLET') promptButton.classList.add('button-l');
   else if (device === 'DESKTOP') promptButton.classList.add('button-xl');
   return promptField;
 }
