@@ -84,6 +84,15 @@ export default async function init(el) {
       await decorateGenfill(el, { createTag });
       break;
     }
+    case el.classList.contains('firefly-masonry'): {
+      loadStyle('/creativecloud/blocks/interactive-marquee/milo-marquee.css');
+      loadStyle('/creativecloud/features/interactive-elements/interactive-elements.css');
+      loadStyle('/creativecloud/features/firefly/firefly-masonry.css');
+      interactiveInit(el, decorateButtons, decorateBlockBg, createTag);
+      const { default: setInteractiveMasonry } = await import('../../features/firefly/firefly-masonry.js');
+      await setInteractiveMasonry(el, { createTag });
+      break;
+    }
     case el.classList.contains('firefly'): {
       loadStyle('/creativecloud/blocks/interactive-marquee/milo-marquee.css');
       loadStyle('/creativecloud/features/interactive-elements/interactive-elements.css');
@@ -91,15 +100,6 @@ export default async function init(el) {
       interactiveInit(el, decorateButtons, decorateBlockBg, createTag);
       const { default: setInteractiveFirefly } = await import('../../features/firefly/firefly-interactive.js');
       await setInteractiveFirefly(el);
-      break;
-    }
-    case el.classList.contains('interactive-masonry'): {
-      loadStyle('/creativecloud/blocks/interactive-marquee/milo-marquee.css');
-      loadStyle('/creativecloud/features/interactive-elements/interactive-elements.css');
-      loadStyle('/creativecloud/features/interactive-masonry/interactive-masonry.css');
-      interactiveInit(el, decorateButtons, decorateBlockBg, createTag);
-      const { default: setInteractiveMasonry } = await import('../../features/interactive-masonry/interactive-masonry.js');
-      await setInteractiveMasonry(el, { createTag });
       break;
     }
     default:

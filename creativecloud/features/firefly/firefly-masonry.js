@@ -11,7 +11,7 @@ function handleTouchDevice(mediaContainer, device) {
         setTimeout(() => {
           tapCount = 0;
           mediaContainer.querySelector('p').style.display = 'none';
-        }, 2000);
+        }, 1000);
       } else if (tapCount === 2) {
         window.location.href = mediaContainer.querySelector('a').href;
       }
@@ -52,23 +52,31 @@ async function createEmbellishment(allP, media, ic, mode) {
   const [promptText, buttonText, link] = allP[4].innerText.split('|');
   const fireflyPrompt = await createPromptField(`${promptText}`, `${buttonText}`, 'ff-masonary');
   fireflyPrompt.classList.add('ff-masonary-prompt');
+  media.appendChild(fireflyPrompt);
   const promptButton = fireflyPrompt.querySelector('#promptbutton');
-  promptButton.addEventListener('click', async () => {
-    window.location.href = link;
+  promptButton.addEventListener('click', async (e) => {
+    const userprompt = media.querySelector('.ff-masonary-prompttext')?.value;
+    const dall = userprompt === '' ? 'SubmitTextToImage' : 'SubmitTextToImageUserContent';
+    e.target.setAttribute('daa-ll', dall);
+    if (userprompt === '') {
+      window.location.href = link;
+    } else {
+      const { default: signIn } = await import('./firefly-susi.js');
+      signIn(userprompt, 'goToFirefly');
+    }
   });
 
   const enticementText = allP[0].textContent.trim();
   const enticementIcon = allP[0].querySelector('a').href;
   const enticementDiv = await createEnticement(`${enticementText}|${enticementIcon}`, mode);
   media.appendChild(enticementDiv);
-  media.appendChild(fireflyPrompt);
   ic.appendChild(media);
 }
 
 async function processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDetail, device) {
   const allMedia = [];
   const media = miloUtil.createTag('div', { class: 'media grid-layout' });
-  for (let i = 0; i < mediaDetail.img.length; i++) {
+  for (let i = 0; i < mediaDetail.img.length; i += 1) {
     const mediaContainer = miloUtil.createTag('div', { class: 'image-container' });
     const a = miloUtil.createTag('a', { href: `${mediaDetail.href[i]}` });
     a.style.backgroundImage = `url(${mediaDetail.imgSrc[i]})`;
@@ -88,7 +96,7 @@ function setImgAttrs(a, imagePrompt, src, prompt, href) {
   a.href = href;
 }
 
-function handleClick(a, mediaDetail, imagePrompt) {
+function handleAutoCycle(a, mediaDetail, imagePrompt) {
   const currIndex = mediaDetail.index;
   const nextIndex = (currIndex + 1) % mediaDetail.imgSrc.length;
   const src = mediaDetail.imgSrc[nextIndex];
@@ -101,7 +109,7 @@ function handleClick(a, mediaDetail, imagePrompt) {
 
 function startAutocycle(a, imagePrompt, autoCycleConfig, mediaDetail, interval) {
   autoCycleConfig.autocycleInterval = setInterval(() => {
-    handleClick(a, mediaDetail, imagePrompt);
+    handleAutoCycle(a, mediaDetail, imagePrompt);
     if (mediaDetail.index === mediaDetail.image.length - 1) {
       clearInterval(autoCycleConfig.autocycleInterval);
     }
