@@ -76,7 +76,7 @@ async function createEmbellishment(allP, media, ic, mode) {
 async function processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDetail, device) {
   const allMedia = [];
   const media = miloUtil.createTag('div', { class: 'media grid-layout' });
-  for (let i = 0; i < mediaDetail.img.length; i += 1) {
+  for (let i = 0; i < mediaDetail.imgSrc.length; i += 1) {
     const mediaContainer = miloUtil.createTag('div', { class: 'image-container' });
     const a = miloUtil.createTag('a', { href: `${mediaDetail.href[i]}` });
     a.style.backgroundImage = `url(${mediaDetail.imgSrc[i]})`;
@@ -110,7 +110,7 @@ function handleAutoCycle(a, mediaDetail, imagePrompt) {
 function startAutocycle(a, imagePrompt, autoCycleConfig, mediaDetail, interval) {
   autoCycleConfig.autocycleInterval = setInterval(() => {
     handleAutoCycle(a, mediaDetail, imagePrompt);
-    if (mediaDetail.index === mediaDetail.image.length - 1) {
+    if (mediaDetail.index === mediaDetail.imgSrc.length - 1) {
       clearInterval(autoCycleConfig.autocycleInterval);
     }
   }, interval);
@@ -147,13 +147,10 @@ export default async function setInteractiveFirefly(el, miloUtil) {
   const allP = mediaElements.querySelectorAll('p:not(:empty)');
   const currentDom = ic.cloneNode(true);
   ic.innerHTML = '';
-  const mediaDetail = {
-    img: [], imgSrc: [], prompt: [], href: [], index: 0, spans: [],
-  };
+  const mediaDetail = { imgSrc: [], prompt: [], href: [], index: 0, spans: [] };
   const device = defineDeviceByScreenSize();
   [...allP].forEach((s) => {
     if (s.querySelector('picture')) {
-      mediaDetail.img.push(s);
       mediaDetail.imgSrc.push(getImgSrc(s));
       const [prompt, href] = allP[[...allP].indexOf(s) + 1].innerText.split('|');
       mediaDetail.prompt.push(prompt);
