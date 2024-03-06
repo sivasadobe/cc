@@ -42,8 +42,9 @@ function createImageLayout(allMedia, createTag, spans, media) {
 
 function getImgSrc(pic, viewport = '') {
   let source = '';
-  if (viewport === 'mobile') source = pic.querySelector('source[type="image/webp"]:not([media])');
-  else source = pic.querySelector('source[type="image/webp"][media]');
+  //if (viewport === 'mobile') source = pic.querySelector('source[type="image/webp"]:not([media])');
+  //else 
+  source = pic.querySelector('source[type="image/webp"][media]');
   return source.srcset;
 }
 
@@ -122,9 +123,17 @@ function processMobileMedia(ic, miloUtil, allP, mode, mediaDetail, device) {
   const mediaContainer = miloUtil.createTag('div', { class: 'image-container' });
   const a = miloUtil.createTag('a', { href: `${mediaDetail.href[mediaDetail.index]}` });
   a.style.backgroundImage = `url(${mediaDetail.imgSrc[mediaDetail.index]})`;
-  const imgHoverText = miloUtil.createTag('p', { class: 'image-content' }, allP[2].innerText.trim());
+  /*const imgHoverText = miloUtil.createTag('span', { class: 'image-content' }, allP[2].innerText.trim());
+  const imgHoverIcon = miloUtil.createTag('img', { class: 'image-content' }, allP[2].querySelector('a').href);*/
+  const imageHover = miloUtil.createTag('p', { class: 'image-content' });
+  const imgHoverText = miloUtil.createTag('span', { }, allP[2].innerText.trim());
+  const imgHoverIcon = miloUtil.createTag('img', { alt: '', class: 'hoversvg' });
+  imgHoverIcon.src = allP[2].querySelector('a').href;
+  imageHover.prepend(imgHoverIcon);
+  imageHover.appendChild(imgHoverText);
+  
   const imgPrompt = miloUtil.createTag('p', { class: 'image-prompt' }, mediaDetail.prompt[mediaDetail.index].trim());
-  a.appendChild(imgHoverText);
+  a.appendChild(imageHover);
   mediaContainer.appendChild(a);
   mediaContainer.appendChild(imgPrompt);
   mediaMobile.appendChild(mediaContainer);
