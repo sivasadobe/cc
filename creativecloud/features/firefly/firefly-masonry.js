@@ -119,7 +119,7 @@ function startAutocycle(a, imagePrompt, autoCycleConfig, mediaDetail, interval) 
     if (mediaDetail.index === mediaDetail.imgSrc.length - 1) {
       clearInterval(autoCycleConfig.autocycleInterval);
     }
-  }, 20000);
+  }, interval);
 }
 
 function processMobileMedia(ic, miloUtil, allP, mode, mediaDetail, device) {
