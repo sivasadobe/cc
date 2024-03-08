@@ -24,7 +24,7 @@
   padding-inline-end: 7px;
   border: 1px solid #E6E6E6;
   justify-content: space-between;
-  width: 290px;
+  width: 285px;
   box-sizing: content-box;
 }
 
@@ -213,8 +213,8 @@
     height: 50px;
     padding-top: 7px;
     padding-bottom: 7px;
-    padding-inline-start: 23px;
-    padding-inline-end: 23px;
+    padding-inline-start: 19px;
+    padding-inline-end: 19px;
     width: 487px;
   }
 
@@ -311,8 +311,8 @@
     height: 50px;
     padding-top: 7px;
     padding-bottom: 7px;
-    padding-inline-start: 23px;
-    padding-inline-end: 23px;
+    padding-inline-start: 19px;
+    padding-inline-end: 19px;
     width: 487px;
   }
 

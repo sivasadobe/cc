@@ -84,7 +84,7 @@ export default async function init(el) {
       await decorateGenfill(el, { createTag });
       break;
     }
-    case el.classList.contains('firefly-masonry'): {
+    case el.classList.contains('ff-masonry'): {
       loadStyle('/creativecloud/blocks/interactive-marquee/milo-marquee.css');
       loadStyle('/creativecloud/features/interactive-elements/interactive-elements.css');
       loadStyle('/creativecloud/features/firefly/firefly-masonry.css');
