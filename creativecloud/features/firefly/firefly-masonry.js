@@ -48,12 +48,15 @@ function getImgSrc(pic, viewport = '') {
   return source.srcset;
 }
 
-async function createEmbellishment(allP, media, ic, mode) {
+async function createEmbellishment(allP, media, ic, mode, createTag) {
   const { createPromptField, createEnticement } = await import('../interactive-elements/interactive-elements.js');
+  const { focusOnInput } = await import('./firefly-interactive.js');
   const [promptText, buttonText] = allP[4].innerText.split('|');
   const fireflyPrompt = await createPromptField(`${promptText}`, `${buttonText}`, 'ff-masonary');
   fireflyPrompt.classList.add('ff-masonary-prompt');
   media.appendChild(fireflyPrompt);
+  const input = fireflyPrompt.querySelector('.ff-masonary-prompttext');
+  focusOnInput(media, createTag, input)
   const promptButton = fireflyPrompt.querySelector('#promptbutton');
   promptButton.addEventListener('click', async (e) => {
     const userprompt = media.querySelector('.ff-masonary-prompttext')?.value;
@@ -93,7 +96,7 @@ async function processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDeta
     handleTouchDevice(mediaContainer, device);
   }
   createImageLayout(allMedia, miloUtil.createTag, mediaDetail.spans, media);
-  createEmbellishment(allP, media, ic, enticementMode);
+  createEmbellishment(allP, media, ic, enticementMode, miloUtil.createTag);
 }
 
 function setImgAttrs(a, imagePrompt, src, prompt, href) {
@@ -152,7 +155,7 @@ function processMobileMedia(ic, miloUtil, allP, mode, mediaDetail, device) {
       startAutocycle(aTag, imagePrompt, autoCycleConfig, mediaDetail, 3000);
     }
   }, 1000);
-  createEmbellishment(allP, mediaMobile, ic, mode);
+  createEmbellishment(allP, mediaMobile, ic, mode, miloUtil.createTag);
   handleTouchDevice(mediaContainer, device);
 }
 

@@ -175,7 +175,8 @@
 
   .ff-masonry .mobile-only .image-content > p {
     position: absolute;
-    /*width: 100%;*/
+    padding: 0;
+    margin: 0;
     top: 50%;
     left: 55%;
     transform: translate(-50%, -55%); 
@@ -239,7 +240,7 @@
     font-size: 28px;
     line-height: 35px;
     font-weight: bold;
-    margin: 40px 0 16px -20px;
+    margin: 40px 0 16px 0;
     top: 390px;
   }
 
@@ -251,7 +252,7 @@
     width: 49px;
     height: 73px;
     transform: rotate(310deg);
-    margin: 490px -50px 10px -5px;
+    margin: 490px -65px 10px -5px;
   }
 
   [dir="rtl"] .interactive-marquee.ff-masonry .enticement-arrow {
@@ -260,13 +261,21 @@
   }
   
   .ff-masonary-prompt {
-    top: 470px;
-    margin-inline-start: 64px;
+    top: 478px;
+    margin-inline-start: 80px;
   }
 
   .hoversvg {
     right: 16px;
     bottom: 16px;
+  }
+
+  .interactive-marquee.ff-masonry .interactive-container .media {
+    top: 36px;
+  }
+
+  .interactive-marquee.ff-masonry .foreground {
+    padding-top: 0;
   }
 }
 
@@ -279,7 +288,7 @@
     width: 49px;
     height: 73px;
     transform: rotate(310deg);
-    margin: 490px -50px 10px -5px;
+    margin: 490px -65px 10px -5px;
   }
   
   [dir="rtl"] .interactive-marquee.ff-masonry .enticement-arrow {
@@ -291,7 +300,7 @@
     font-size: 28px;
     line-height: 35px;
     font-weight: bold;
-    margin: 40px 0 16px -20px;
+    margin: 40px 0 16px 0;
     top: 390px;
   }
 
@@ -300,8 +309,8 @@
   }
 
   .ff-masonary-prompt {
-    top: 470px;
-    margin-inline-start: 64px;
+    top: 478px;
+    margin-inline-start: 80px;
   }
 
   .hoversvg {
@@ -312,4 +321,33 @@
   .interactive-marquee.ff-masonry .interactive-container .media {
     top: 36px;
   }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+.blinking-cursor {
+  height: 1.2em;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-inline: 0;
+  width: 1px;
+  background: var(--text-color);
+  animation: blink 0.95s infinite;
+}
+
+.blinking-cursor ~ .ff-masonary-prompttext {
+  padding-inline-start: 0;
+}
+
+.blinking-cursor.blink-light:not(:focus) {
+  background: #dbdbdb;
 }
