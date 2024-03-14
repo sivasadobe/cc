@@ -201,8 +201,8 @@
   }
   
   .interactive-marquee.ff-masonry .interactive-container .enticement-text {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: var(--type-body-m-size);
+    line-height: var(--type-body-m-lh);
     top: -150px;
     margin-inline-start: -10px;
   }
@@ -270,7 +270,7 @@
   }
 
   .interactive-marquee.ff-masonry .interactive-container .media {
-    top: 36px;
+    top: 40px;
   }
 
   .interactive-marquee.ff-masonry .foreground {
@@ -318,7 +318,7 @@
   }
 
   .interactive-marquee.ff-masonry .interactive-container .media {
-    top: 36px;
+    top: 72px;
   }
 }
 

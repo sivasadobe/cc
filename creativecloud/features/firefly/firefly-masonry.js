@@ -11,7 +11,7 @@ function handleTouchDevice(mediaContainer, device) {
         setTimeout(() => {
           tapCount = 0;
           mediaContainer.querySelector('.image-content').style.display = 'none';
-        }, 1000);
+        }, 2000);
       } else if (tapCount === 2) {
         window.location.href = mediaContainer.querySelector('a').href;
       }
@@ -34,7 +34,7 @@ function createImageLayout(allMedia, createTag, spans, media) {
     const prompt = img.querySelector('p');
     const maxChars = maxChar[spanWidth];
     if (prompt.textContent.length > maxChars) {
-      prompt.textContent = prompt.textContent.slice(0, maxChars);
+      prompt.textContent = `${prompt.textContent.slice(0, maxChars-3)}...`;
     }
     gridDiv.appendChild(img);
   });
