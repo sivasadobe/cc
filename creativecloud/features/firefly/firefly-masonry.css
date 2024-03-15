@@ -45,6 +45,7 @@
   margin-block-end: 0;
   margin-block-start: 0;
   border-radius: 16px;
+  transition: opacity 600ms ease-in-out;
 }
 
 .image-content > p {
@@ -176,6 +177,10 @@
 
   .ff-masonry .mobile-only .image-content {
     position: relative;
+  }
+
+  .ff-masonry .mobile-only .image-container > a {
+    transition: all 600ms ease-in-out;
   }
 
   .ff-masonry .mobile-only .image-content > p {
