@@ -180,7 +180,7 @@
   }
 
   .ff-masonry .mobile-only .image-container > a {
-    transition: backgroung-image 600ms ease-out;
+    transition: backgroung-image 600ms ease-in-out;
   }
 
   .ff-masonry .mobile-only .image-content > p {
