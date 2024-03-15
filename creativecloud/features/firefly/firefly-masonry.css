@@ -193,7 +193,6 @@
   }
 
   .ff-masonry .mobile-only .image-container {
-    position: relative;
     height: 329px;
     width: 300px;
     margin-top: 120px;
@@ -235,6 +234,18 @@
   .interactive-marquee.ff-masonry .action-area {
     display: none;
   }
+
+  [dir="rtl"] .hoversvg {
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -70%); 
+  }
+
+  [dir="rtl"] .ff-masonry .mobile-only .image-content > p {
+    top: 48%;
+    left: 42%;
+    transform: translate(-48%, -42%); 
+  }
 }
 
 @media (min-width: 600px) and (max-width: 1199px) {
@@ -275,8 +286,13 @@
     margin-inline-start: 80px;
   }
 
-  .hoversvg {
+  [dir="ltr"] .hoversvg {
     right: 16px;
+    bottom: 16px;
+  }
+
+  [dir="rtl"] .hoversvg {
+    left: 16px;
     bottom: 16px;
   }
 
@@ -323,8 +339,13 @@
     margin-inline-start: 80px;
   }
 
-  .hoversvg {
+  [dir="ltr"] .hoversvg {
     right: 16px;
+    bottom: 16px;
+  }
+
+  [dir="rtl"] .hoversvg {
+    left: 16px;
     bottom: 16px;
   }
 
