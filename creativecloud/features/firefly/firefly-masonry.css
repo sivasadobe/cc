@@ -267,7 +267,7 @@
   }
 
   [dir="rtl"] .interactive-marquee.ff-masonry .enticement-text {    
-    margin-inline-start: -25px;    
+    margin-inline-start: -10px;    
   }
 
   .interactive-marquee.ff-masonry .interactive-container .enticement-arrow {
@@ -279,7 +279,7 @@
 
   [dir="rtl"] .interactive-marquee.ff-masonry .enticement-arrow {
     transform: rotate(-310deg) scaleX(-1);
-    margin-inline-start: 50px;    
+    margin-inline-start: 65px;    
   }
   
   .ff-masonary-prompt {
@@ -320,7 +320,7 @@
   
   [dir="rtl"] .interactive-marquee.ff-masonry .enticement-arrow {
     transform: rotate(-310deg) scaleX(-1);
-    margin-inline-start: 50px;    
+    margin-inline-start: 65px;    
   }
 
   .interactive-marquee.ff-masonry .interactive-container .enticement-text {
@@ -332,7 +332,7 @@
   }
 
   [dir="rtl"] .interactive-marquee.ff-masonry .enticement-text {    
-    margin-inline-start: -25px;    
+    margin-inline-start: -10px;    
   }
 
   .ff-masonary-prompt {
