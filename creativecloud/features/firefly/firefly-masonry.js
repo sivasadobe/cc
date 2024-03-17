@@ -1,9 +1,13 @@
 const { default: defineDeviceByScreenSize } = await import('../../scripts/decorate.js');
 
-function handleTouchDevice(mediaContainer, device) {
-  if (device !== 'DESKTOP') {
+function isTouchDevice() {
+  return 'ontouchstart' in window || navigator.maxTouchPoints;
+}
+
+function handleTouchDevice(mediaContainer) {
+ // if (device !== 'DESKTOP') {
     let tapCount = 0;
-    mediaContainer.querySelector('a').addEventListener('click', async (e) => {
+    mediaContainer.querySelector('a').addEventListener('touchstart', async (e) => {
       e.preventDefault();
       tapCount += 1;
       if (tapCount === 1) {
@@ -16,7 +20,7 @@ function handleTouchDevice(mediaContainer, device) {
         window.location.href = mediaContainer.querySelector('a').href;
       }
     });
-  }
+  //}
 }
 
 function createImageLayout(allMedia, createTag, spans, media) {
@@ -93,7 +97,9 @@ async function processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDeta
     a.appendChild(imgPromptContainer);
     mediaContainer.appendChild(a);
     allMedia.push(mediaContainer);
-    handleTouchDevice(mediaContainer, device);
+    if (isTouchDevice) {
+      handleTouchDevice(mediaContainer);
+    }
   }
   createImageLayout(allMedia, miloUtil.createTag, mediaDetail.spans, media);
   createEmbellishment(allP, media, ic, enticementMode, miloUtil.createTag);
@@ -158,7 +164,9 @@ function processMobileMedia(ic, miloUtil, allP, mode, mediaDetail, device) {
     },
   });
   createEmbellishment(allP, mediaMobile, ic, mode, miloUtil.createTag);
-  handleTouchDevice(mediaContainer, device);
+  if (isTouchDevice) {
+    handleTouchDevice(mediaContainer);
+  }  
 }
 
 export default async function setMultiImageMarquee(el, miloUtil) {
