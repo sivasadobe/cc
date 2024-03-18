@@ -4,7 +4,7 @@ function isTouchDevice() {
   return 'ontouchstart' in window || navigator.maxTouchPoints;
 }
 
-function handleTouchDevice(mediaContainer) {
+function handleTouchDevice(mediaContainer, delay) {
  // if (device !== 'DESKTOP') {
     let tapCount = 0;
     mediaContainer.querySelector('a').addEventListener('touchstart', async (e) => {
@@ -15,7 +15,7 @@ function handleTouchDevice(mediaContainer) {
         setTimeout(() => {
           tapCount = 0;
           mediaContainer.querySelector('.image-content').style.display = 'none';
-        }, 2000);
+        }, delay);
       } else if (tapCount === 2) {
         window.location.href = mediaContainer.querySelector('a').href;
       }
@@ -98,7 +98,7 @@ async function processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDeta
     mediaContainer.appendChild(a);
     allMedia.push(mediaContainer);
     if (isTouchDevice) {
-      handleTouchDevice(mediaContainer);
+      handleTouchDevice(mediaContainer, 2000);
     }
   }
   createImageLayout(allMedia, miloUtil.createTag, mediaDetail.spans, media);
@@ -165,7 +165,7 @@ function processMobileMedia(ic, miloUtil, allP, mode, mediaDetail, device) {
   });
   createEmbellishment(allP, mediaMobile, ic, mode, miloUtil.createTag);
   if (isTouchDevice) {
-    handleTouchDevice(mediaContainer);
+    handleTouchDevice(mediaContainer, 1000);
   }  
 }
 
