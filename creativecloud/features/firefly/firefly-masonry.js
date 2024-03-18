@@ -95,7 +95,7 @@ async function processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDeta
     a.appendChild(imgPromptContainer);
     mediaContainer.appendChild(a);
     allMedia.push(mediaContainer);
-    if (isTouchDevice) {
+    if (isTouchDevice()) {
       handleTouchDevice(mediaContainer, 2000);
     }
   }
@@ -162,7 +162,7 @@ function processMobileMedia(ic, miloUtil, allP, mode, mediaDetail, device) {
     },
   });
   createEmbellishment(allP, mediaMobile, ic, mode, miloUtil.createTag);
-  if (isTouchDevice) {
+  if (isTouchDevice()) {
     handleTouchDevice(mediaContainer, 1000);
   }  
 }
