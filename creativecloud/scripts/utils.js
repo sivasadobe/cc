@@ -78,6 +78,7 @@ function getDecorateAreaFn() {
         break;
       }
       case firstBlock?.classList.contains('marquee'):
+        replaceDotMedia();
         firstBlock.querySelectorAll('img').forEach(eagerLoad);
         break;
       case firstBlock?.classList.contains('interactive-marquee'):
@@ -86,18 +87,19 @@ function getDecorateAreaFn() {
         fgDivs.forEach((d) => eagerLoad(d.querySelector('img')));
         break;
       case !!fragmentLink:
+        replaceDotMedia();
         if (window.document.querySelector('a.fragment') === fragmentLink && !window.document.querySelector('img[loading="eager"]')) {
           eagerLoad(area.querySelector('img'));
         }
         break;
       default:
+        replaceDotMedia();
         if (!fragmentLink) eagerLoad(area.querySelector('img'));
         break;
     }
   }
 
   return (area, options) => {
-    replaceDotMedia();
     if (!lcpImgSet) loadLCPImage(area, options);
   };
 }
