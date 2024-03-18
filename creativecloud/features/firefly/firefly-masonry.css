@@ -1,6 +1,7 @@
+/* stylelint-disable property-no-vendor-prefix */
+/* stylelint-disable value-no-vendor-prefix */
 .ff-masonry .mobile-only,
 .ff-masonry .grid-layout {
-  -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
   user-select: none;
   display: none;
@@ -41,7 +42,6 @@
   height: 100%;
   background-color: #212121A8;
   opacity: 0;
-  transition: opacity 0.5s;
   display: flex;
   margin-block-end: 0;
   margin-block-start: 0;
@@ -54,7 +54,7 @@
   color: var(--color-white);
   font-size: var(--type-body-s-size);
   line-height: var(--type-body-s-lh);
-  margin: 0 0 24px 0;
+  margin: 0 0 24px;
   border: 0;
 }
 
@@ -181,7 +181,7 @@
   }
 
   .ff-masonry .mobile-only .image-container > a {
-    transition: backgroung-image 600ms ease-in-out;
+    transition: background-image 600ms ease-in-out;
   }
 
   .ff-masonry .mobile-only .image-content > p {
@@ -206,8 +206,8 @@
     width: 30px;
     height: 43px;
     top: -580px;
-    margin-inline-start: -5;
-    margin: 490px -55px 10px -5px;
+    margin-top: 490px;
+    margin-bottom: 10px;
     margin-inline-start: -30px;
   }
   
@@ -262,7 +262,7 @@
     font-size: 28px;
     line-height: 35px;
     font-weight: bold;
-    margin: 40px 0 16px 0;
+    margin: 40px 0 16px;
     top: 390px;
   }
 
@@ -327,7 +327,7 @@
     font-size: 28px;
     line-height: 35px;
     font-weight: bold;
-    margin: 40px 0 16px 0;
+    margin: 40px 0 16px;
     top: 390px;
   }
 
