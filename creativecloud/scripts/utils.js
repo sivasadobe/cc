@@ -46,7 +46,7 @@ export const [setLibs, getLibs] = (() => {
 
 const miloLibs = setLibs('/libs');
 
-const { createTag, localizeLink, getConfig } = await import(`${miloLibs}/utils/utils.js`);
+const { createTag, localizeLink, loadStyle } = await import(`${miloLibs}/utils/utils.js`);
 export { createTag, localizeLink };
 
 function getDecorateAreaFn() {
@@ -59,22 +59,13 @@ function getDecorateAreaFn() {
     if (lcpImg) lcpImgSet = true;
   };
 
-  function replaceDotMedia(area = document) {
-    const resetAttributeBase = (tag, attr) => {
-      area.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((el) => {
-        el[attr] = `${new URL(`${getConfig().contentRoot}${el.getAttribute(attr).substring(1)}`, window.location).href}`;
-      });
-    };
-    resetAttributeBase('img', 'src');
-    resetAttributeBase('source', 'srcset');
-  }
-
-  function loadLCPImage(area = document, { fragmentLink = null } = {}) {
+  async function loadLCPImage(area = document, { fragmentLink = null } = {}) {
     const firstBlock = area.querySelector('body > main > div > div');
     let fgDivs = null;
     switch (true) {
       case firstBlock?.classList.contains('changebg'): {
         firstBlock.querySelector(':scope > div:nth-child(1)').querySelectorAll('img').forEach(eagerLoad);
+        const { getConfig } = await import(`${getLibs()}/utils/utils.js`);
         import(`${getConfig().codeRoot}/deps/interactive-marquee-changebg/changeBgMarquee.js`);
         break;
       }
@@ -85,6 +76,7 @@ function getDecorateAreaFn() {
         firstBlock.querySelector(':scope > div:nth-child(1)').querySelectorAll('img').forEach(eagerLoad);
         fgDivs = firstBlock.querySelector(':scope > div:nth-child(2)').querySelectorAll('div:not(:first-child)');
         fgDivs.forEach((d) => eagerLoad(d.querySelector('img')));
+        if (!firstBlock.classList.contains('changebg')) loadStyle('/creativecloud/blocks/interactive-marquee/milo-marquee.css');
         break;
       case !!fragmentLink:
         if (window.document.querySelector('a.fragment') === fragmentLink && !window.document.querySelector('img[loading="eager"]')) {
@@ -98,7 +90,6 @@ function getDecorateAreaFn() {
   }
 
   return (area, options) => {
-    replaceDotMedia();
     if (!lcpImgSet) loadLCPImage(area, options);
   };
 }
