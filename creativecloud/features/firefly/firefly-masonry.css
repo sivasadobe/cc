@@ -181,7 +181,7 @@
   }
 
   .ff-masonry .mobile-only .image-container > a {
-    transition: background-image 600ms ease-in-out;
+    transition: opacity 600ms ease-in-out;
   }
 
   .ff-masonry .mobile-only .image-content > p {
