@@ -1,24 +1,22 @@
-const { default: defineDeviceByScreenSize } = await import('../../scripts/decorate.js');
-
 function isTouchDevice() {
   return 'ontouchstart' in window || navigator.maxTouchPoints;
 }
 
 function handleTouchDevice(mediaContainer, delay) {
-    let tapCount = 0;
-    mediaContainer.querySelector('a').addEventListener('click', async (e) => {
-      e.preventDefault();
-      tapCount += 1;
-      if (tapCount === 1) {
-        mediaContainer.querySelector('.image-content').style.display = 'block';
-        setTimeout(() => {
-          tapCount = 0;
-          mediaContainer.querySelector('.image-content').style.display = 'none';
-        }, delay);
-      } else if (tapCount === 2) {
-        window.location.href = mediaContainer.querySelector('a').href;
-      }
-    });
+  let tapCount = 0;
+  mediaContainer.querySelector('a').addEventListener('click', async (e) => {
+    e.preventDefault();
+    tapCount += 1;
+    if (tapCount === 1) {
+      mediaContainer.querySelector('.image-content').style.display = 'block';
+      setTimeout(() => {
+        tapCount = 0;
+        mediaContainer.querySelector('.image-content').style.display = 'none';
+      }, delay);
+    } else if (tapCount === 2) {
+      window.location.href = mediaContainer.querySelector('a').href;
+    }
+  });
 }
 
 function createImageLayout(allMedia, createTag, spans, media) {
@@ -79,7 +77,7 @@ async function createEmbellishment(allP, media, ic, mode, createTag) {
   ic.appendChild(media);
 }
 
-async function processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDetail, device) {
+async function processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDetail) {
   const allMedia = [];
   const media = miloUtil.createTag('div', { class: 'media grid-layout' });
   for (let i = 0; i < mediaDetail.imgSrc.length; i += 1) {
@@ -130,7 +128,7 @@ function startAutocycle(a, imagePrompt, mediaDetail, interval) {
   }, interval);
 }
 
-function processMobileMedia(ic, miloUtil, allP, mode, mediaDetail, device) {
+function processMobileMedia(ic, miloUtil, allP, mode, mediaDetail) {
   const mediaMobile = miloUtil.createTag('div', { class: 'media mobile-only' });
   const mediaContainer = miloUtil.createTag('div', { class: 'image-container' });
   const a = miloUtil.createTag('a', { href: `${mediaDetail.href[mediaDetail.index]}` });
@@ -164,7 +162,7 @@ function processMobileMedia(ic, miloUtil, allP, mode, mediaDetail, device) {
   createEmbellishment(allP, mediaMobile, ic, mode, miloUtil.createTag);
   if (isTouchDevice()) {
     handleTouchDevice(mediaContainer, 1000);
-  }  
+  }
 }
 
 export default async function setMultiImageMarquee(el, miloUtil) {
@@ -174,7 +172,6 @@ export default async function setMultiImageMarquee(el, miloUtil) {
   const allP = mediaElements.querySelectorAll('p:not(:empty)');
   ic.innerHTML = '';
   const mediaDetail = { imgSrc: [], prompt: [], href: [], index: 0, spans: [] };
-  const device = defineDeviceByScreenSize();
   [...allP].forEach((s) => {
     if (s.querySelector('picture')) {
       mediaDetail.imgSrc.push(getImgSrc(s));
@@ -184,6 +181,6 @@ export default async function setMultiImageMarquee(el, miloUtil) {
       mediaDetail.spans.push(s.querySelector('img').getAttribute('alt'));
     }
   });
-  processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDetail, device);
-  processMobileMedia(ic, miloUtil, allP, enticementMode, mediaDetail, device);
+  processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDetail);
+  processMobileMedia(ic, miloUtil, allP, enticementMode, mediaDetail);
 }
