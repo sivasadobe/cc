@@ -5,9 +5,8 @@ function isTouchDevice() {
 }
 
 function handleTouchDevice(mediaContainer, delay) {
- // if (device !== 'DESKTOP') {
     let tapCount = 0;
-    mediaContainer.querySelector('a').addEventListener('touchstart', async (e) => {
+    mediaContainer.querySelector('a').addEventListener('click', async (e) => {
       e.preventDefault();
       tapCount += 1;
       if (tapCount === 1) {
@@ -20,7 +19,6 @@ function handleTouchDevice(mediaContainer, delay) {
         window.location.href = mediaContainer.querySelector('a').href;
       }
     });
-  //}
 }
 
 function createImageLayout(allMedia, createTag, spans, media) {
