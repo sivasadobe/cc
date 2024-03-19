@@ -67,7 +67,7 @@
   -webkit-box-orient: vertical;
   -webkit-box-pack: end;
   overflow: hidden;
-  max-height: 110px;
+  max-height: 108px;
 }
 
 .image-container:hover .image-content {
