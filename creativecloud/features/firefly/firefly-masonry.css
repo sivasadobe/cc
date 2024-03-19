@@ -5,7 +5,7 @@
   display: none;
 }
 
-.ff-masonary-promptbar > button:hover {
+.masonry-promptbar > button:hover {
   cursor: pointer;
 }
 
@@ -74,7 +74,7 @@
   position: absolute;
 }
 
-.ff-masonary-prompt {
+.ff-masonry-prompt {
   position: absolute;
   top: -72px;
   margin-inline-start: 0;
@@ -288,7 +288,7 @@
     margin-inline-start: 65px;    
   }
   
-  .ff-masonary-prompt {
+  .ff-masonry-prompt {
     top: 478px;
     margin-inline-start: 80px;
   }
@@ -341,7 +341,7 @@
     margin-inline-start: -10px;    
   }
 
-  .ff-masonary-prompt {
+  .ff-masonry-prompt {
     top: 478px;
     margin-inline-start: 80px;
   }
@@ -382,7 +382,7 @@
   animation: blink 0.95s infinite;
 }
 
-.blinking-cursor ~ .ff-masonary-prompttext {
+.blinking-cursor ~ .masonry-prompttext {
   padding-inline-start: 0;
 }
 

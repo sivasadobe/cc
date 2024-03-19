@@ -52,14 +52,14 @@ async function createEmbellishment(allP, media, ic, mode, createTag) {
   const { createPromptField, createEnticement } = await import('../interactive-elements/interactive-elements.js');
   const { focusOnInput } = await import('./firefly-interactive.js');
   const [promptText, buttonText] = allP[4].innerText.split('|');
-  const fireflyPrompt = await createPromptField(`${promptText}`, `${buttonText}`, 'ff-masonary');
-  fireflyPrompt.classList.add('ff-masonary-prompt');
+  const fireflyPrompt = await createPromptField(`${promptText}`, `${buttonText}`, 'ff-masonry');
+  fireflyPrompt.classList.add('ff-masonry-prompt');
   media.appendChild(fireflyPrompt);
-  const input = fireflyPrompt.querySelector('.ff-masonary-prompttext');
+  const input = fireflyPrompt.querySelector('.masonry-prompttext');
   focusOnInput(media, createTag, input);
   const promptButton = fireflyPrompt.querySelector('#promptbutton');
   promptButton.addEventListener('click', async (e) => {
-    const userprompt = media.querySelector('.ff-masonary-prompttext')?.value;
+    const userprompt = media.querySelector('.masonry-prompttext')?.value;
     const dall = userprompt === '' ? 'SubmitTextToImage' : 'SubmitTextToImageUserContent';
     e.target.setAttribute('daa-ll', dall);
     if (userprompt === '') {

@@ -13,7 +13,7 @@
   box-sizing: content-box;
 }
 
-.ff-masonary-promptbar {
+.masonry-promptbar {
   height: 30px;
   background: var(--color-white);
   border-radius: 15px;
@@ -51,7 +51,7 @@
   white-space: nowrap;
 }
 
-.ff-masonary-prompttext {
+.masonry-prompttext {
   width: 180px;
   outline: none;
   color: var(--text-color);
@@ -209,7 +209,7 @@
     line-height: var(--type-body-l-lh);
   }
 
-  .ff-masonary-promptbar {
+  .masonry-promptbar {
     height: 50px;
     padding-top: 7px;
     padding-bottom: 7px;
@@ -218,7 +218,7 @@
     width: 517px;
   }
 
-  .ff-masonary-prompttext {
+  .masonry-prompttext {
     font-size: var(--type-body-m-size);
     line-height: var(--type-body-m-lh);
     width: 372px;
@@ -307,7 +307,7 @@
     width: 294px;
   }
 
-  .ff-masonary-promptbar {
+  .masonry-promptbar {
     height: 50px;
     padding-top: 7px;
     padding-bottom: 7px;
@@ -316,7 +316,7 @@
     width: 517px;
   }
 
-  .ff-masonary-prompttext {
+  .masonry-prompttext {
     font-size: var(--type-body-m-size);
     line-height: var(--type-body-m-lh);
     width: 372px;
