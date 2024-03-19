@@ -98,7 +98,7 @@ async function processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDeta
     }
   }
   createImageLayout(allMedia, miloUtil.createTag, mediaDetail.spans, media);
-  createEmbellishment(allP, media, ic, enticementMode, miloUtil.createTag);
+  await createEmbellishment(allP, media, ic, enticementMode, miloUtil.createTag);
 }
 
 function setImgAttrs(a, imagePrompt, src, prompt, href) {
@@ -133,10 +133,10 @@ function startAutocycle(a, imagePrompt, mediaDetail, interval) {
   }, interval);
 }
 
-function processMobileMedia(ic, miloUtil, allP, mode, mediaDetail) {
+async function processMobileMedia(ic, miloUtil, allP, mode, mediaDetail) {
   const mediaMobile = miloUtil.createTag('div', { class: 'media mobile-only' });
   const mediaContainer = miloUtil.createTag('div', { class: 'image-container' });
-  const a = miloUtil.createTag('a', { href: `${mediaDetail.href[mediaDetail.index]}`});
+  const a = miloUtil.createTag('a', { href: `${mediaDetail.href[mediaDetail.index]}` });
   a.style.backgroundImage = `url(${mediaDetail.imgSrc[mediaDetail.index]})`;
   const imageHover = miloUtil.createTag('div', { class: 'image-content' });
   const imgHoverText = miloUtil.createTag('p', { }, allP[2].innerText.trim());
@@ -166,7 +166,7 @@ function processMobileMedia(ic, miloUtil, allP, mode, mediaDetail) {
       }, 1000);
     },
   });
-  createEmbellishment(allP, mediaMobile, ic, mode, miloUtil.createTag);
+  await createEmbellishment(allP, mediaMobile, ic, mode, miloUtil.createTag);
   if (isTouchDevice()) {
     handleTouchDevice(mediaContainer, 1000);
   }
@@ -188,6 +188,6 @@ export default async function setMultiImageMarquee(el, miloUtil) {
       mediaDetail.spans.push(s.querySelector('img').getAttribute('alt'));
     }
   });
-  processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDetail);
-  processMobileMedia(ic, miloUtil, allP, enticementMode, mediaDetail);
+  await processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDetail);
+  await processMobileMedia(ic, miloUtil, allP, enticementMode, mediaDetail);
 }
