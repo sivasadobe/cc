@@ -156,7 +156,9 @@ function processMobileMedia(ic, miloUtil, allP, mode, mediaDetail) {
     el: aTag,
     options: { rootMargin: `${ROOT_MARGIN}px` },
     callback: (target) => {
-      startAutocycle(target, imagePrompt, mediaDetail, 3000);
+       setTimeout(() => {
+        startAutocycle(target, imagePrompt, mediaDetail, 3000);
+      }, 1000);
     },
   });
   createEmbellishment(allP, mediaMobile, ic, mode, miloUtil.createTag);
