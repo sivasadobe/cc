@@ -180,10 +180,6 @@
     position: relative;
   }
 
-  .ff-masonry .mobile-only .image-container > a {
-    transition: opacity 600ms ease-in-out;
-  }
-
   .ff-masonry .mobile-only .image-content > p {
     position: absolute;
     padding: 0;
