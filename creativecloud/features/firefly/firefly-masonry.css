@@ -138,7 +138,7 @@
   }
 
   .ff-masonry .mobile-only .image-container > a {
-    transition: background-image 600ms initial;
+    transition: href 600ms ease-in-out;
   }
 
   .prompt-used {
