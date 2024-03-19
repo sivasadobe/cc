@@ -105,29 +105,26 @@
   grid-column: span 6;
 }
 
-.interactive-marquee.ff-masonry .interactive-container .enticement-arrow {
+.interactive-marquee.ff-masonry .enticement-arrow {
   display: block;
   position: absolute;
 }
 
-.interactive-marquee.ff-masonry .interactive-container .enticement-text {
+.interactive-marquee.ff-masonry .enticement-text {
   display: block;
   max-width: 30ch;
   position: absolute;
-  font-size: 28px;
-  line-height: 35px;
+  font-size: var(--type-body-xl-size);
+  line-height: var(--type-body-xl-lh);
   font-weight: bold;
-  margin: 40px 0 16px -20px;
-  top: -100px;
   color: var(--color-white);
 }
 
-.interactive-marquee.ff-masonry .interactive-container .enticement-text.light {
+.interactive-marquee.ff-masonry .enticement-text.light {
   color: #000;
 }
 
 [dir="rtl"] .interactive-marquee.ff-masonry .enticement-text {
-    position: absolute;
     right: var(--spacing-xxs);
     margin: 40px -20px 16px 0;
 }
@@ -208,7 +205,7 @@
     transform: translate(-50%, -50%);
   }
 
-  .interactive-marquee.ff-masonry .interactive-container .enticement-arrow {
+  .interactive-marquee.ff-masonry .enticement-arrow {
     width: 30px;
     height: 43px;
     top: -580px;
@@ -217,9 +214,7 @@
     margin-inline-start: -30px;
   }
   
-  .interactive-marquee.ff-masonry .interactive-container .enticement-text {
-    font-size: var(--type-body-m-size);
-    line-height: var(--type-body-m-lh);
+  .interactive-marquee.ff-masonry .enticement-text {
     top: -150px;
     margin-inline-start: -10px;
   }
@@ -264,10 +259,9 @@
     width: 625px;
   }
 
-  .interactive-marquee.ff-masonry .interactive-container .enticement-text {
+  .interactive-marquee.ff-masonry .enticement-text {
     font-size: 28px;
     line-height: 35px;
-    font-weight: bold;
     margin: 40px 0 16px;
     top: 390px;
   }
@@ -276,7 +270,7 @@
     margin-inline-start: -10px;    
   }
 
-  .interactive-marquee.ff-masonry .interactive-container .enticement-arrow {
+  .interactive-marquee.ff-masonry .enticement-arrow {
     width: 49px;
     height: 73px;
     transform: rotate(310deg);
@@ -317,7 +311,7 @@
     display: block;
   }
 
-  .interactive-marquee.ff-masonry .interactive-container .enticement-arrow {
+  .interactive-marquee.ff-masonry .enticement-arrow {
     width: 49px;
     height: 73px;
     transform: rotate(310deg);
@@ -329,7 +323,7 @@
     margin-inline-start: 65px;    
   }
 
-  .interactive-marquee.ff-masonry .interactive-container .enticement-text {
+  .interactive-marquee.ff-masonry .enticement-text {
     font-size: 28px;
     line-height: 35px;
     font-weight: bold;
