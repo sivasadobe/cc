@@ -20,22 +20,10 @@ function handleTouchDevice(mediaContainer, delay) {
 }
 
 function createImageLayout(allMedia, createTag, spans, media) {
-  const maxChar = {
-    'span-4': 103,
-    'span-6': 181,
-    'span-8': 273,
-    'span-12': 417,
-    'full-width': 417,
-  };
   const gridDiv = createTag('div', { class: 'grid-container' });
   [...allMedia].forEach((img, i) => {
     const spanWidth = spans[i] ? spans[i] : 'span-4';
     img.classList.add(`ff-grid-${spanWidth.trim().replace(' ', '-')}`);
-    const prompt = img.querySelector('p');
-    const maxChars = maxChar[spanWidth];
-    if (prompt.textContent.length > maxChars) {
-      prompt.textContent = `${prompt.textContent.slice(0, maxChars - 3)}...`;
-    }
     gridDiv.appendChild(img);
   });
   media.appendChild(gridDiv);
