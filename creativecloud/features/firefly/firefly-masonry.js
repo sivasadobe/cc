@@ -156,7 +156,7 @@ function processMobileMedia(ic, miloUtil, allP, mode, mediaDetail) {
     el: aTag,
     options: { rootMargin: `${ROOT_MARGIN}px` },
     callback: (target) => {
-       setTimeout(() => {
+      setTimeout(() => {
         startAutocycle(target, imagePrompt, mediaDetail, 3000);
       }, 1000);
     },

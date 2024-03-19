@@ -2,9 +2,11 @@
 /* stylelint-disable value-no-vendor-prefix */
 .ff-masonry .mobile-only,
 .ff-masonry .grid-layout {
-  -webkit-user-select: none;
-  user-select: none;
   display: none;
+}
+
+.ff-masonary-promptbar > button:hover {
+  cursor: pointer;
 }
 
 .ff-masonry .grid-container { 
@@ -133,6 +135,10 @@
 @media (max-width: 600px) {
   .ff-masonry .mobile-only {
     display: block;
+  }
+
+  .ff-masonry .mobile-only .image-container > a {
+    transition: background-image 600ms initial;
   }
 
   .prompt-used {
