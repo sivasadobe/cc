@@ -102,10 +102,14 @@ async function processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDeta
 }
 
 function setImgAttrs(a, imagePrompt, src, prompt, href) {
-  a.style.opacity = 1;
-  a.style.backgroundImage = `url(${src})`;
-  imagePrompt.querySelector('p').innerText = prompt;
-  a.href = href;
+  const image = new Image();
+  image.src = src;
+  image.onload = () => {
+    a.style.backgroundImage = `url(${src})`;
+    imagePrompt.querySelector('p').innerText = prompt;
+    a.href = href;
+    a.classList.remove('preload');
+  };
 }
 
 function handleAutoCycle(a, mediaDetail, imagePrompt) {
@@ -121,6 +125,7 @@ function handleAutoCycle(a, mediaDetail, imagePrompt) {
 
 function startAutocycle(a, imagePrompt, mediaDetail, interval) {
   const autocycleInterval = setInterval(() => {
+    a.classList.add('preload');
     handleAutoCycle(a, mediaDetail, imagePrompt);
     if (mediaDetail.index === mediaDetail.imgSrc.length - 1) {
       clearInterval(autocycleInterval);
@@ -131,7 +136,7 @@ function startAutocycle(a, imagePrompt, mediaDetail, interval) {
 function processMobileMedia(ic, miloUtil, allP, mode, mediaDetail) {
   const mediaMobile = miloUtil.createTag('div', { class: 'media mobile-only' });
   const mediaContainer = miloUtil.createTag('div', { class: 'image-container' });
-  const a = miloUtil.createTag('a', { href: `${mediaDetail.href[mediaDetail.index]}` });
+  const a = miloUtil.createTag('a', { href: `${mediaDetail.href[mediaDetail.index]}`});
   a.style.backgroundImage = `url(${mediaDetail.imgSrc[mediaDetail.index]})`;
   const imageHover = miloUtil.createTag('div', { class: 'image-content' });
   const imgHoverText = miloUtil.createTag('p', { }, allP[2].innerText.trim());

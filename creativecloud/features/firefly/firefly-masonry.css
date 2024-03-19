@@ -9,6 +9,10 @@
   cursor: pointer;
 }
 
+.preload {
+  display: none; /* Hide the anchor tag */
+}
+
 .ff-masonry .grid-container { 
   display: grid;
   width: 635px;
