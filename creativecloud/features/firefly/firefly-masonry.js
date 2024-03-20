@@ -4,7 +4,7 @@ function isTouchDevice() {
 
 function handleTouchDevice(mediaContainer, delay) {
   let tapCount = 0;
-  mediaContainer.querySelector('a').addEventListener('click', async (e) => {
+  mediaContainer.querySelector('a').addEventListener('click', (e) => {
     e.preventDefault();
     tapCount += 1;
     if (tapCount === 1) {
@@ -57,6 +57,7 @@ async function createEmbellishment(allP, media, ic, mode, createTag) {
       signIn(userprompt, 'goToFirefly');
     }
   });
+
   const enticementText = allP[0].textContent.trim();
   const enticementIcon = allP[0].querySelector('a').href;
   const enticementDiv = await createEnticement(`${enticementText}|${enticementIcon}`, mode);
