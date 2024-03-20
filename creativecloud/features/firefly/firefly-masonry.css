@@ -62,11 +62,6 @@
   line-height: var(--type-body-s-lh);
   margin: 0 0 24px;
   border: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  max-height: 108px;
 }
 
 .image-container:hover .image-content {
@@ -292,6 +287,14 @@
     margin-inline-start: 80px;
   }
 
+  .image-content > p {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-height: 108px;
+  }
+
   [dir="ltr"] .hoversvg {
     right: 16px;
     bottom: 16px;
@@ -343,6 +346,14 @@
   .ff-masonry-prompt {
     top: 478px;
     margin-inline-start: 80px;
+  }
+
+  .image-content > p {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-height: 108px;
   }
 
   [dir="ltr"] .hoversvg {
