@@ -1,3 +1,6 @@
+const { createPromptField, createEnticement } = await import('../interactive-elements/interactive-elements.js');
+const { focusOnInput } = await import('./firefly-interactive.js');
+
 function isTouchDevice() {
   return 'ontouchstart' in window || navigator.maxTouchPoints;
 }
@@ -36,16 +39,7 @@ function getImgSrc(pic, viewport = '') {
   return source.srcset;
 }
 
-async function createEmbellishment(allP, media, ic, mode, createTag) {
-  const { createPromptField, createEnticement } = await import('../interactive-elements/interactive-elements.js');
-  const { focusOnInput } = await import('./firefly-interactive.js');
-  const [promptText, buttonText] = allP[4].innerText.split('|');
-  const fireflyPrompt = await createPromptField(`${promptText}`, `${buttonText}`, 'ff-masonry');
-  fireflyPrompt.classList.add('ff-masonry-prompt');
-  media.appendChild(fireflyPrompt);
-  const input = fireflyPrompt.querySelector('.masonry-prompttext');
-  focusOnInput(media, createTag, input);
-  const promptButton = fireflyPrompt.querySelector('#promptbutton');
+function eventOnGenerate(promptButton, media, allP) {
   promptButton.addEventListener('click', async (e) => {
     const userprompt = media.querySelector('.masonry-prompttext')?.value;
     const dall = userprompt === '' ? 'SubmitTextToImage' : 'SubmitTextToImageUserContent';
@@ -57,15 +51,25 @@ async function createEmbellishment(allP, media, ic, mode, createTag) {
       signIn(userprompt, 'goToFirefly');
     }
   });
+}
 
+function createEmbellishment(allP, media, ic, mode, createTag) {
+  const [promptText, buttonText] = allP[4].innerText.split('|');
+  const fireflyPrompt = createPromptField(`${promptText}`, `${buttonText}`, 'ff-masonry');
+  fireflyPrompt.classList.add('ff-masonry-prompt');
+  media.appendChild(fireflyPrompt);
+  const input = fireflyPrompt.querySelector('.masonry-prompttext');
+  focusOnInput(media, createTag, input);
+  const promptButton = fireflyPrompt.querySelector('#promptbutton');
+  eventOnGenerate(promptButton, media, allP);
   const enticementText = allP[0].textContent.trim();
   const enticementIcon = allP[0].querySelector('a').href;
-  const enticementDiv = await createEnticement(`${enticementText}|${enticementIcon}`, mode);
+  const enticementDiv = createEnticement(`${enticementText}|${enticementIcon}`, mode);
   media.appendChild(enticementDiv);
   ic.appendChild(media);
 }
 
-async function processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDetail) {
+function processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDetail) {
   const allMedia = [];
   const media = miloUtil.createTag('div', { class: 'media grid-layout' });
   for (let i = 0; i < mediaDetail.imgSrc.length; i += 1) {
@@ -86,7 +90,7 @@ async function processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDeta
     }
   }
   createImageLayout(allMedia, miloUtil.createTag, mediaDetail.spans, media);
-  await createEmbellishment(allP, media, ic, enticementMode, miloUtil.createTag);
+  createEmbellishment(allP, media, ic, enticementMode, miloUtil.createTag);
 }
 
 function setImgAttrs(a, imagePrompt, src, prompt, href) {
@@ -121,7 +125,7 @@ function startAutocycle(a, imagePrompt, mediaDetail, interval) {
   }, interval);
 }
 
-async function processMobileMedia(ic, miloUtil, allP, mode, mediaDetail) {
+function processMobileMedia(ic, miloUtil, allP, mode, mediaDetail) {
   const mediaMobile = miloUtil.createTag('div', { class: 'media mobile-only' });
   const mediaContainer = miloUtil.createTag('div', { class: 'image-container' });
   const a = miloUtil.createTag('a', { href: `${mediaDetail.href[mediaDetail.index]}` });
@@ -157,7 +161,7 @@ async function processMobileMedia(ic, miloUtil, allP, mode, mediaDetail) {
   if (isTouchDevice()) {
     handleTouchDevice(mediaContainer, 1000);
   }
-  await createEmbellishment(allP, mediaMobile, ic, mode, miloUtil.createTag);
+  createEmbellishment(allP, mediaMobile, ic, mode, miloUtil.createTag);
 }
 
 export default async function setMultiImageMarquee(el, miloUtil) {
@@ -176,6 +180,6 @@ export default async function setMultiImageMarquee(el, miloUtil) {
       mediaDetail.spans.push(s.querySelector('img').getAttribute('alt'));
     }
   });
-  await processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDetail);
-  await processMobileMedia(ic, miloUtil, allP, enticementMode, mediaDetail);
+  processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDetail);
+  processMobileMedia(ic, miloUtil, allP, enticementMode, mediaDetail);
 }
