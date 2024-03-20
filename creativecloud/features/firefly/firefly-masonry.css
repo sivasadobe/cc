@@ -65,7 +65,6 @@
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
-  -webkit-box-pack: end;
   overflow: hidden;
   max-height: 108px;
 }
