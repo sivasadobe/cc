@@ -1,6 +1,3 @@
-const { createPromptField, createEnticement } = await import('../interactive-elements/interactive-elements.js');
-const { focusOnInput } = await import('./firefly-interactive.js');
-
 function isTouchDevice() {
   return 'ontouchstart' in window || navigator.maxTouchPoints;
 }
@@ -39,7 +36,16 @@ function getImgSrc(pic, viewport = '') {
   return source.srcset;
 }
 
-function eventOnGenerate(promptButton, media, allP) {
+async function createEmbellishment(allP, media, ic, mode, createTag) {
+  const { createPromptField, createEnticement } = await import('../interactive-elements/interactive-elements.js');
+  const { focusOnInput } = await import('./firefly-interactive.js');
+  const [promptText, buttonText] = allP[4].innerText.split('|');
+  const fireflyPrompt = await createPromptField(`${promptText}`, `${buttonText}`, 'ff-masonry');
+  fireflyPrompt.classList.add('ff-masonry-prompt');
+  media.appendChild(fireflyPrompt);
+  const input = fireflyPrompt.querySelector('.masonry-prompttext');
+  focusOnInput(media, createTag, input);
+  const promptButton = fireflyPrompt.querySelector('#promptbutton');
   promptButton.addEventListener('click', async (e) => {
     const userprompt = media.querySelector('.masonry-prompttext')?.value;
     const dall = userprompt === '' ? 'SubmitTextToImage' : 'SubmitTextToImageUserContent';
@@ -51,20 +57,10 @@ function eventOnGenerate(promptButton, media, allP) {
       signIn(userprompt, 'goToFirefly');
     }
   });
-}
 
-function createEmbellishment(allP, media, ic, mode, createTag) {
-  const [promptText, buttonText] = allP[4].innerText.split('|');
-  const fireflyPrompt = createPromptField(`${promptText}`, `${buttonText}`, 'ff-masonry');
-  fireflyPrompt.classList.add('ff-masonry-prompt');
-  media.appendChild(fireflyPrompt);
-  const input = fireflyPrompt.querySelector('.masonry-prompttext');
-  focusOnInput(media, createTag, input);
-  const promptButton = fireflyPrompt.querySelector('#promptbutton');
-  eventOnGenerate(promptButton, media, allP);
   const enticementText = allP[0].textContent.trim();
   const enticementIcon = allP[0].querySelector('a').href;
-  const enticementDiv = createEnticement(`${enticementText}|${enticementIcon}`, mode);
+  const enticementDiv = await createEnticement(`${enticementText}|${enticementIcon}`, mode);
   media.appendChild(enticementDiv);
   ic.appendChild(media);
 }
@@ -114,7 +110,6 @@ function handleAutoCycle(a, mediaDetail, imagePrompt) {
   mediaDetail.index = nextIndex;
   return nextIndex;
 }
-
 function startAutocycle(a, imagePrompt, mediaDetail, interval) {
   const autocycleInterval = setInterval(() => {
     a.classList.add('preload');
