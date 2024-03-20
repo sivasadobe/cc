@@ -8,10 +8,10 @@ function handleTouchDevice(mediaContainer, delay) {
     e.preventDefault();
     tapCount += 1;
     if (tapCount === 1) {
-      mediaContainer.querySelector('.image-content').style.display = 'block';
+      mediaContainer.querySelector('.image-content').style.opacity = 1;
       setTimeout(() => {
         tapCount = 0;
-        mediaContainer.querySelector('.image-content').style.display = 'none';
+        mediaContainer.querySelector('.image-content').style.opacity = 0;
       }, delay);
     } else if (tapCount === 2) {
       window.location.href = mediaContainer.querySelector('a').href;
@@ -57,7 +57,6 @@ async function createEmbellishment(allP, media, ic, mode, createTag) {
       signIn(userprompt, 'goToFirefly');
     }
   });
-
   const enticementText = allP[0].textContent.trim();
   const enticementIcon = allP[0].querySelector('a').href;
   const enticementDiv = await createEnticement(`${enticementText}|${enticementIcon}`, mode);
@@ -154,10 +153,10 @@ async function processMobileMedia(ic, miloUtil, allP, mode, mediaDetail) {
       }, 1000);
     },
   });
-  await createEmbellishment(allP, mediaMobile, ic, mode, miloUtil.createTag);
   if (isTouchDevice()) {
     handleTouchDevice(mediaContainer, 1000);
   }
+  await createEmbellishment(allP, mediaMobile, ic, mode, miloUtil.createTag);
 }
 
 export default async function setMultiImageMarquee(el, miloUtil) {
