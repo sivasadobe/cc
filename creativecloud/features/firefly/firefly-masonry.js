@@ -1,5 +1,7 @@
 function isTouchDevice() {
-  return 'ontouchstart' in window || navigator.maxTouchPoints;
+  return ('ontouchstart' in window)
+    || (navigator.maxTouchPoints > 0)
+    || (navigator.msMaxTouchPoints > 0);
 }
 
 function handleTouchDevice(mediaContainer, delay) {
@@ -9,7 +11,7 @@ function handleTouchDevice(mediaContainer, delay) {
     tapCount += 1;
     if (tapCount === 1) {
       mediaContainer.querySelector('.image-content').style.opacity = 1;
-      setTimeout(() => {      
+      setTimeout(() => {
         tapCount = 0;
         mediaContainer.querySelector('.image-content').style.opacity = 0;
       }, delay);
@@ -65,7 +67,7 @@ async function createEmbellishment(allP, media, ic, mode, createTag) {
   ic.appendChild(media);
 }
 
-async function processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDetail) {
+function processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDetail) {
   const allMedia = [];
   const media = miloUtil.createTag('div', { class: 'media grid-layout' });
   for (let i = 0; i < mediaDetail.imgSrc.length; i += 1) {
@@ -86,7 +88,7 @@ async function processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDeta
     }
   }
   createImageLayout(allMedia, miloUtil.createTag, mediaDetail.spans, media);
-  await createEmbellishment(allP, media, ic, enticementMode, miloUtil.createTag);
+  createEmbellishment(allP, media, ic, enticementMode, miloUtil.createTag);
 }
 
 function setImgAttrs(a, imagePrompt, src, prompt, href) {
@@ -121,7 +123,7 @@ function startAutocycle(a, imagePrompt, mediaDetail, interval) {
   }, interval);
 }
 
-async function processMobileMedia(ic, miloUtil, allP, mode, mediaDetail) {
+function processMobileMedia(ic, miloUtil, allP, mode, mediaDetail) {
   const mediaMobile = miloUtil.createTag('div', { class: 'media mobile-only' });
   const mediaContainer = miloUtil.createTag('div', { class: 'image-container' });
   const a = miloUtil.createTag('a', { href: `${mediaDetail.href[mediaDetail.index]}` });
@@ -157,7 +159,7 @@ async function processMobileMedia(ic, miloUtil, allP, mode, mediaDetail) {
   if (isTouchDevice()) {
     handleTouchDevice(mediaContainer, 1000);
   }
-  await createEmbellishment(allP, mediaMobile, ic, mode, miloUtil.createTag);
+  createEmbellishment(allP, mediaMobile, ic, mode, miloUtil.createTag);
 }
 
 export default async function setMultiImageMarquee(el, miloUtil) {
@@ -176,6 +178,6 @@ export default async function setMultiImageMarquee(el, miloUtil) {
       mediaDetail.spans.push(s.querySelector('img').getAttribute('alt'));
     }
   });
-  await processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDetail);
-  await processMobileMedia(ic, miloUtil, allP, enticementMode, mediaDetail);
+  processMasonryMedia(ic, miloUtil, allP, enticementMode, mediaDetail);
+  processMobileMedia(ic, miloUtil, allP, enticementMode, mediaDetail);
 }
