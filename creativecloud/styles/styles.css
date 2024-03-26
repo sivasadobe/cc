@@ -40,6 +40,8 @@
 .aside.interactive-enabled .foreground.container .image > h5 + p,
 .aside.interactive-enabled .foreground.container .image > h6 + p,
 .aside.interactive-enabled .foreground.container .image > p:nth-child(1) {
+  position: absolute;
+  bottom: 570px;
   display: flex;
   flex-direction: row;
   height: auto;
