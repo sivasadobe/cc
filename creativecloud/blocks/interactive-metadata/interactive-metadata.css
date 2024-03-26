@@ -20,6 +20,16 @@
   margin: auto;
 }
 
+.interactive-enabled .foreground .image > p img[src*=".svg"] {
+  display: block;
+  position: relative;
+  width: 49px;
+  height: 73px;
+  top: -30px;
+  right: 30px;
+  z-index: 2;
+}
+
 .interactive-enabled .foreground.container .interactive-holder > picture img,
 .interactive-enabled .foreground.container .interactive-holder > picture,
 .interactive-enabled .foreground.container .interactive-holder > video {

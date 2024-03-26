@@ -164,7 +164,8 @@ async function getTargetArea(el) {
   intEnb.classList.add('interactive-enabled');
   const assets = intEnb.querySelectorAll('.asset picture, .image picture');
   const iArea = createTag('div', { class: `interactive-holder show-image` });
-  const pic = assets[assets.length - 1];
+  // const pic = assets[assets.length - 1];
+  const pic = assets[0];
   const newPic = pic.cloneNode(true);
   const p = createTag('p', {}, newPic);
   el.querySelector(':scope > div > div').prepend(p);
