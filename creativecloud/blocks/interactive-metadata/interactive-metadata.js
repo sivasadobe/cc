@@ -133,15 +133,15 @@ async function getTargetArea(el) {
   if (!intEnb) return
   intEnb.classList.add('interactive-enabled');
   // for left aside, swap text nd image clases
-  if(intEnb.classList.contains('aside') && !intEnb.querySelector('.image picture')) {
-    const realImg = intEnb.querySelector('.text');
-    const realTxt = intEnb.querySelector('.image');
-    realImg.classList.add('image');
-    realImg.classList.remove('text');
-    realTxt.classList.add('text');
-    realTxt.classList.remove('image');
-    realImg.querySelectorAll('p').forEach(p => p.removeAttribute("class"));
-  }
+  // if(intEnb.classList.contains('aside') && !intEnb.querySelector('.image picture')) {
+  //   const realImg = intEnb.querySelector('.text');
+  //   const realTxt = intEnb.querySelector('.image');
+  //   realImg.classList.add('image');
+  //   realImg.classList.remove('text');
+  //   realTxt.classList.add('text');
+  //   realTxt.classList.remove('image');
+  //   realImg.querySelectorAll('p').forEach(p => p.removeAttribute("class"));
+  // }
   const assets = intEnb.querySelectorAll('.asset picture, .image picture');
   const iArea = createTag('div', { class: `interactive-holder show-image` });
   const pic = assets[assets.length - 1];

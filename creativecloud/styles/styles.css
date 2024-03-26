@@ -15,6 +15,14 @@
   margin: 0 auto;
 }
 
+.aside.interactive-enabled .foreground.container > div:nth-child(1) {
+  order: 0;
+}
+
+.aside.interactive-enabled.row-reversed .foreground.container > div:nth-child(2) {
+  order: 0;
+} 
+
 .aside.interactive-enabled .foreground.container .image > h2,
 .aside.interactive-enabled .foreground.container .image > h1,
 .aside.interactive-enabled .foreground.container .image > h3,
