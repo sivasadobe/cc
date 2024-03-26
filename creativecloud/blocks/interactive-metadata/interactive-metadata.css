@@ -20,6 +20,10 @@
   margin: auto;
 }
 
+.interactive-enabled.mobile-hide-enticement .foreground .image .enticement-container {
+  display: none;
+}
+
 .interactive-enabled .foreground .image .enticement-container {
   display: block;
   height: 28px;
