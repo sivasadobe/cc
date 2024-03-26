@@ -60,21 +60,21 @@
 } 
 
 @media screen and (max-width: 600px) {
-  .interactive-enabled.title-swap .foreground .image > h1,
-  .interactive-enabled.title-swap .foreground .image > h2,
-  .interactive-enabled.title-swap .foreground .image > h3,
-  .interactive-enabled.title-swap .foreground .image > h4,
-  .interactive-enabled.title-swap .foreground .image > h5,
-  .interactive-enabled.title-swap .foreground .image > h6 {
+  .interactive-enabled.heading-top .foreground .image > h1,
+  .interactive-enabled.heading-top .foreground .image > h2,
+  .interactive-enabled.heading-top .foreground .image > h3,
+  .interactive-enabled.heading-top .foreground .image > h4,
+  .interactive-enabled.heading-top .foreground .image > h5,
+  .interactive-enabled.heading-top .foreground .image > h6 {
     display: block;
   }
   
-  .interactive-enabled.title-swap .foreground .text > h1,
-  .interactive-enabled.title-swap .foreground .text > h2,
-  .interactive-enabled.title-swap .foreground .text > h3,
-  .interactive-enabled.title-swap .foreground .text > h4,
-  .interactive-enabled.title-swap .foreground .text > h5,
-  .interactive-enabled.title-swap .foreground .text > h6 {
+  .interactive-enabled.heading-top .foreground .text > h1,
+  .interactive-enabled.heading-top .foreground .text > h2,
+  .interactive-enabled.heading-top .foreground .text > h3,
+  .interactive-enabled.heading-top .foreground .text > h4,
+  .interactive-enabled.heading-top .foreground .text > h5,
+  .interactive-enabled.heading-top .foreground .text > h6 {
     display: none;
   }
 }
