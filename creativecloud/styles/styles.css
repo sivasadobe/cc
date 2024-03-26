@@ -22,14 +22,13 @@
 .interactive-enabled .foreground .image > h5,
 .interactive-enabled .foreground .image > h6 {
   display: none;
-  font-size: 28px;
-  line-height: 28px;
+  font-size: 36px;
+  line-height: 45px;
   margin: 0;
-  padding-bottom: 24px;
 }
 
 .interactive-enabled .foreground .image > p {
-  width: 300px;
+  width: 100%;
   margin: auto;
   height: 0;
 }
@@ -37,22 +36,27 @@
 .interactive-enabled .foreground .image > h2 + p,
 .interactive-enabled .foreground .image > p:nth-child(1) {
   display: flex;
-  height: auto;
   flex-direction: row;
+  height: auto;
   font-weight: bold;
   font-size: 28px;
   line-height: 28px;
+  margin: 0;
+  padding: 0;
   margin-bottom: 16px;
+}
+
+.interactive-enabled .foreground .image > h2 + p {
+  margin-top: 24px;
 }
 
 .interactive-enabled .foreground .image > p img[src*=".svg"] {
   position: relative;
   width: 49px;
-  height: 69px;
-  min-height: 69px;
-  left: -32px;
-  top: -28px;
-  z-index: 3;
+  height: 73px;
+  top: -30px;
+  right: 30px;
+  z-index: 2;
 } 
 
 @media screen and (max-width: 600px) {
@@ -82,19 +86,23 @@
   }
 
   .interactive-enabled .foreground .image > p {
-    width: 570px;
+    width: var(--grid-container-width);
+    max-width: 570px;
     margin: auto;
+  }
+  
+  .interactive-enabled .foreground .image > h2 + p,
+  .interactive-enabled .foreground .image > p:nth-child(1) {
+    position: relative;
+    right: 30px;
+    margin: auto;
+    margin-bottom: 24px;
   }
 
   .interactive-enabled .foreground .image > p img[src*=".svg"] {
-    position: relative;
-    width: 49px;
-    height: 69px;
-    min-height: 69px;
-    left: -32px;
-    top: -28px;
-    z-index: 3;
-  } 
+    top: -38px;
+    right: 60px;
+  }
 }
 
 @media screen and (min-width: 1200px) {
@@ -105,25 +113,23 @@
   }
 
   .interactive-enabled .foreground .image {
-    position: relative;
-    height: calc(100% - 42px);
-    width: 570px;
-    min-width: 570px;
+    height: auto;
+    width: var(--grid-container-width);
+    max-width: 570px;
     border-radius: 16px;
     margin-inline-start: 60px;
     background: none;
     margin-bottom: 42px;
-    top: 88px;
   }
 
   .interactive-enabled .foreground .image > h2 + p,
   .interactive-enabled .foreground .image > p:nth-child(1) {
-    position: absolute;
-    top: -44px;
-    left: -30px;
+    margin: 0;
+    margin-bottom: 24px;
   }
 
   .interactive-enabled .foreground .image > p img[src*=".svg"] {
-    left: -62px;
-  }
+    right: 109px;
+    top: -70px;
+  } 
 }
