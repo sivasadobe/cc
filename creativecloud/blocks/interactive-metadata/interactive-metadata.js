@@ -2,7 +2,8 @@ import { getLibs } from '../../scripts/utils.js';
 import { default as defineDeviceByScreenSize } from '../../scripts/decorate.js';
 
 function getImgSrc(pic) {
-  const viewport = defineDeviceByScreenSize() === 'MOBILE' ? 'mobile' : 'desktop';
+  const viewport =
+    defineDeviceByScreenSize() === 'MOBILE' ? 'mobile' : 'desktop';
   let source = '';
   if (viewport === 'mobile')
     source = pic.querySelector('source[type="image/webp"]:not([media])');
@@ -70,25 +71,49 @@ async function handleImageTransition(stepInfo, transitionCfg = {}) {
   const trgtPic = stepInfo.target.querySelector(':scope > picture');
   const trgtVideo = stepInfo.target.querySelector(':scope > video');
   if (transitionCfg.useCfg) {
-    if (transitionCfg.src) await createDisplayImg(stepInfo.target, trgtPic, transitionCfg.src, transitionCfg.alt);
-    else await createDisplayVideo(stepInfo.target, trgtVideo, transitionCfg.vsrc);
-    return
+    if (transitionCfg.src)
+      await createDisplayImg(
+        stepInfo.target,
+        trgtPic,
+        transitionCfg.src,
+        transitionCfg.alt
+      );
+    else
+      await createDisplayVideo(stepInfo.target, trgtVideo, transitionCfg.vsrc);
+    return;
   }
-  const displayPics = config.querySelectorAll(':scope > p > picture img[src*="media_"]');
+  const displayPics = config.querySelectorAll(
+    ':scope > p > picture img[src*="media_"]'
+  );
   const displayVideos = config.querySelectorAll(':scope > p > a[href*=".mp4"]');
   const displayPath = stepInfo.displayPath;
-  if (displayPics.length) await createDisplayImg(stepInfo.target, trgtPic, getImgSrc(displayPics[displayPath].closest('picture')), displayPics[displayPath].alt);
-  else if (displayVideos.length) await createDisplayVideo(stepInfo.target, trgtVideo, displayVideos[displayPath].href);
+  if (displayPics.length)
+    await createDisplayImg(
+      stepInfo.target,
+      trgtPic,
+      getImgSrc(displayPics[displayPath].closest('picture')),
+      displayPics[displayPath].alt
+    );
+  else if (displayVideos.length)
+    await createDisplayVideo(
+      stepInfo.target,
+      trgtVideo,
+      displayVideos[displayPath].href
+    );
 }
 
 async function handleNextStep(stepInfo) {
   const nextStepIndex = getNextStepIndex(stepInfo);
   stepInfo.stepInit = await loadJSandCSS(stepInfo.stepList[nextStepIndex]);
-  await loadAllImgs(stepInfo.stepConfigs[nextStepIndex].querySelectorAll('img[src*="svg"]'));
+  await loadAllImgs(
+    stepInfo.stepConfigs[nextStepIndex].querySelectorAll('img[src*="svg"]')
+  );
 }
 
 async function handleLayerDisplay(stepInfo) {
-  const currLayer = stepInfo.target.querySelector(`.layer-${stepInfo.stepIndex}`);
+  const currLayer = stepInfo.target.querySelector(
+    `.layer-${stepInfo.stepIndex}`
+  );
   const prevStepIndex = getPrevStepIndex(stepInfo);
   const prevLayer = stepInfo.target.querySelector(`.layer-${prevStepIndex}`);
   const miloLibs = getLibs('/libs');
@@ -98,7 +123,10 @@ async function handleLayerDisplay(stepInfo) {
   await handleImageTransition(stepInfo);
   await loadAllImgs(currLayer.querySelectorAll('img[src*="media_"]'));
   await decorateDefaultLinkAnalytics(currLayer);
-  if (prevStepIndex) stepInfo.target.classList.remove(`step-${stepInfo.stepList[prevStepIndex]}`);
+  if (prevStepIndex)
+    stepInfo.target.classList.remove(
+      `step-${stepInfo.stepList[prevStepIndex]}`
+    );
   stepInfo.target.classList.add(`step-${stepInfo.stepName}`);
   currLayer.classList.add('show-layer');
   if (currLayer === prevLayer) return;
@@ -116,7 +144,9 @@ async function loadJSandCSS(stepName) {
 }
 
 async function implementWorkflow(stepInfo) {
-  const currLayer = stepInfo.target.querySelector(`.layer-${stepInfo.stepIndex}`);
+  const currLayer = stepInfo.target.querySelector(
+    `.layer-${stepInfo.stepIndex}`
+  );
   const layer = await stepInfo.stepInit(stepInfo);
   if (currLayer) layer.replaceWith(layer);
   else stepInfo.target.append(layer);
@@ -130,7 +160,7 @@ async function getTargetArea(el) {
   const metadataSec = el.closest('.section');
   const previousSection = metadataSec.previousElementSibling;
   const intEnb = previousSection.querySelector('.marquee, .aside');
-  if (!intEnb) return
+  if (!intEnb) return;
   intEnb.classList.add('interactive-enabled');
   const assets = intEnb.querySelectorAll('.asset picture, .image picture');
   const iArea = createTag('div', { class: `interactive-holder show-image` });
@@ -140,8 +170,19 @@ async function getTargetArea(el) {
   el.querySelector(':scope > div > div').prepend(p);
   pic.querySelector('img').src = getImgSrc(pic);
   [...pic.querySelectorAll('source')].forEach((s) => s.remove());
-  const videoSource = createTag('source', { src: ''});
-  const video = createTag('video', {playsinline: '', autoplay: '', muted: '', loop: '', src: '', type: "video/mp4"}, videoSource);
+  const videoSource = createTag('source', { src: '' });
+  const video = createTag(
+    'video',
+    {
+      playsinline: '',
+      autoplay: '',
+      muted: '',
+      loop: '',
+      src: '',
+      type: 'video/mp4',
+    },
+    videoSource
+  );
   iArea.append(pic, video);
   intEnb.querySelector('.asset, .image').append(iArea);
   return iArea;
@@ -198,7 +239,14 @@ function getWorkFlowInformation(el) {
   const intWorkFlowConfig = {
     'workflow-1': ['generate', 'selector-tray', 'crop', 'start-over'],
     'workflow-2': ['crop', 'crop', 'start-over'],
-    'workflow-3': ['generate', 'selector-tray', 'generate', 'selector-tray', 'crop', 'start-over'],
+    'workflow-3': [
+      'generate',
+      'selector-tray',
+      'generate',
+      'selector-tray',
+      'crop',
+      'start-over',
+    ],
     'workflow-4': ['selector-tray'],
   };
   const wfNames = Object.keys(intWorkFlowConfig);
@@ -244,35 +292,15 @@ export default async function init(el) {
 
   await handleNextStep(stepInfo);
   await renderLayer(stepInfo);
-<<<<<<< HEAD
-  // const options = {
-  //   rootMargin: "0px",
-  //   threshold: 1.0,
-  // };
-  // const callback = (entries) => {
-  //   entries.forEach((entry) => {
-  //     if(entry.isIntersecting) {
-  //       addAnimationToLayer(targetAsset);
-  //     }
-  //   });
-  // };
-  // const observer = new IntersectionObserver(callback, options);
-  // observer.observe(targetAsset);
-=======
-
   const miloLibs = getLibs('/libs');
-  const { createIntersectionObserver } = await import(`${miloLibs}/utils/utils.js`);
-  
-
-  const options = { threshold: 1.0 };
-  const callback = (target, entry) => {
-    if(entry.isIntersecting) {
-      addAnimationToLayer(targetAsset);
-    }
-  };
-  if(targetAsset) createIntersectionObserver({ el: targetAsset, callback: callback, options: options } );
->>>>>>> cdfec728cf5c8e499657f16faacf48a8b6b04032
-
+  const { createIntersectionObserver } = await import(
+    `${miloLibs}/utils/utils.js`
+  );
+  createIntersectionObserver({
+    el: targetAsset,
+    callback: addAnimationToLayer,
+    options: { threshold: 1.0 },
+  });
   el.addEventListener('cc:interactive-switch', async (e) => {
     await renderLayer(stepInfo);
   });
