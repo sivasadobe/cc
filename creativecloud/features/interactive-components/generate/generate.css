@@ -74,6 +74,8 @@
     max-width: unset;
   }
 
+  .interactive-enabled.row-reversed.generate-right .step-generate .generate-prompt-button, 
+  .interactive-enabled.row-reversed .step-generate .generate-right .generate-prompt-button,
   [dir="rtl"] .interactive-enabled.generate-right .step-generate .generate-prompt-button, 
   [dir="rtl"] .interactive-enabled .step-generate .generate-right .generate-prompt-button {
     left: auto;
@@ -94,6 +96,7 @@
     height: 64px;
   }
 
+  .interactive-enabled.row-reversed .step-generate .generate-text-container,
   [dir="rtl"] .interactive-enabled .step-generate .generate-text-container {
     border-radius: 0 8px 8px 0;
   }
