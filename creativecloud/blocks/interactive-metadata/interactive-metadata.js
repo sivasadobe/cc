@@ -164,7 +164,7 @@ async function getTargetArea(el) {
   intEnb.classList.add('interactive-enabled');
   const assets = intEnb.querySelectorAll('.asset picture, .image picture');
   const iArea = createTag('div', { class: `interactive-holder show-image` });
-  const pic = assets[0];
+  const pic = assets[assets.length - 1];
   const newPic = pic.cloneNode(true);
   const p = createTag('p', {}, newPic);
   el.querySelector(':scope > div > div').prepend(p);
@@ -183,13 +183,24 @@ async function getTargetArea(el) {
     },
     videoSource
   );
-  // await loadImg(pic.querySelector('img'));
-  const emptyp = pic.closest('p');
-  iArea.append(pic, video);
-  emptyp?.remove();
   const assetArea = intEnb.querySelector('.asset, .image');
-  assetArea.append(iArea);
-  assetArea.querySelector(':scope > p img[src*="svg"]')?.closest('p').classList.add('enticement-arrow');
+  const container = pic.closest('p');
+  iArea.append(newPic, video);
+  if (container) {
+    container.replaceWith(iArea);
+    container.remove();
+  } else {
+    assetArea.append(iArea);
+  }
+  const enticementArrow = assetArea.querySelector(':scope > p img[src*="svg"]');
+  if (enticementArrow) {
+    const enticement = enticementArrow.closest('p');
+    const entTxt = createTag('div', { class: 'enticement-text' }, enticement.textContent);
+    enticement.innerHTML = '';
+    enticementArrow.classList.add('enticement-arrow');
+    enticement.append(entTxt, enticementArrow);
+    enticement.classList.add('enticement-container');
+  }
   return iArea;
 }
 

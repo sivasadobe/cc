@@ -24,11 +24,11 @@
 
 .interactive-enabled:not(.heading-top) .foreground .image > p:nth-child(1), 
 .interactive-enabled.heading-top .foreground .image > p:nth-child(2) {
-  height: auto;
   margin-bottom: 16px;
 }
 
 .interactive-enabled .foreground .image > p > strong,
+.interactive-enabled .foreground .image > picture img[src*="svg"],
 .interactive-enabled .foreground .image > p img[src*="svg"] {
   display: none;
 }
