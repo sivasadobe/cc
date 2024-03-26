@@ -118,7 +118,7 @@
   }
 
   .aside.interactive-enabled .foreground.container > div {
-    min-width: none;
+    min-width: none !important;
   }
 
   [dir="rtl"] .aside.interactive-enabled .foreground.container .text,
