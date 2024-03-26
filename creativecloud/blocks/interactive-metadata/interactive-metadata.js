@@ -183,7 +183,7 @@ async function getTargetArea(el) {
     },
     videoSource
   );
-  await loadImg(pic.querySelector('img'));
+  // await loadImg(pic.querySelector('img'));
   const emptyp = pic.closest('p');
   iArea.append(pic, video);
   emptyp?.remove();
