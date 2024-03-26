@@ -15,39 +15,22 @@
   margin: 0 auto;
 }
 
-.interactive-enabled .foreground .image > h1,
-.interactive-enabled .foreground .image > h2,
-.interactive-enabled .foreground .image > h3,
-.interactive-enabled .foreground .image > h4,
-.interactive-enabled .foreground .image > h5,
-.interactive-enabled .foreground .image > h6 {
-  display: none;
-  font-size: 36px;
-  line-height: 45px;
-  margin: 0;
-}
-
 .interactive-enabled .foreground .image > p {
-  width: 100%;
-  margin: auto;
-  height: 0;
-}
-
-.interactive-enabled .foreground .image > h2 + p,
-.interactive-enabled .foreground .image > p:nth-child(1) {
-  display: flex;
-  flex-direction: row;
-  height: auto;
   font-weight: bold;
   font-size: 28px;
   line-height: 28px;
   margin: 0;
-  padding: 0;
+  height: 0;
+}
+
+.interactive-enabled .foreground .image > p:nth-child(1), 
+.interactive-enabled.heading-top .foreground .image > p:nth-child(2) {
+  height: auto;
   margin-bottom: 16px;
 }
 
-.interactive-enabled .foreground .image > h2 + p {
-  margin-top: 24px;
+.interactive-enabled .foreground .image > p > strong {
+  display: none;
 }
 
 .interactive-enabled .foreground .image > p img[src*=".svg"] {
@@ -60,13 +43,11 @@
 } 
 
 @media screen and (max-width: 600px) {
-  .interactive-enabled.heading-top .foreground .image > h1,
-  .interactive-enabled.heading-top .foreground .image > h2,
-  .interactive-enabled.heading-top .foreground .image > h3,
-  .interactive-enabled.heading-top .foreground .image > h4,
-  .interactive-enabled.heading-top .foreground .image > h5,
-  .interactive-enabled.heading-top .foreground .image > h6 {
+  .interactive-enabled.heading-top .foreground .image > p > strong {
     display: block;
+    font-size: 36px;
+    line-height: 45px;
+    margin-bottom: 24px;
   }
   
   .interactive-enabled.heading-top .foreground .text > h1,
@@ -86,22 +67,15 @@
   }
 
   .interactive-enabled .foreground .image > p {
+    position: relative;
     width: var(--grid-container-width);
     max-width: 570px;
     margin: auto;
-  }
-  
-  .interactive-enabled .foreground .image > h2 + p,
-  .interactive-enabled .foreground .image > p:nth-child(1) {
-    position: relative;
     right: 30px;
-    margin: auto;
-    margin-bottom: 24px;
   }
 
   .interactive-enabled .foreground .image > p img[src*=".svg"] {
-    top: -38px;
-    right: 60px;
+    top: -30px;
   }
 }
 
@@ -121,17 +95,6 @@
     background: none;
     margin-bottom: 42px;
   }
-
-  .interactive-enabled .foreground .image > h2 + p,
-  .interactive-enabled .foreground .image > p:nth-child(1) {
-    margin: 0;
-    margin-bottom: 24px;
-  }
-
-  .interactive-enabled .foreground .image > p img[src*=".svg"] {
-    right: 109px;
-    top: -70px;
-  } 
 
   [dir="rtl"] .interactive-enabled .foreground.container .text {
     order: 2;
