@@ -18,10 +18,10 @@ function selectorTrayWithImgs(data, createTag) {
       return;
     }
     const trayLabel = createTag('div', { class: 'tray-item-label' }, `${ pic.querySelector('img').alt }`);
-    const cfgImg = pic.querySelector('img');
-    const thmbImg = createTag('img', { src: cfgImg.src, alt: cfgImg.alt, loading: 'eager', fetchPriority: 'high' });
-    const thmbPic = createTag('picture', {}, thmbImg);
-    const a = createTag('a', { class: 'tray-thumbnail-img', href: "#" }, thmbPic);
+    const src = data.getImgSrc(pic);
+    const outline = createTag('div', { class: 'tray-thumbnail-outline'});
+    const a = createTag('a', { class: 'tray-thumbnail-img', href: "#" }, outline);
+    a.style.backgroundImage = `url(${src})`;
     if (pathIdx === 0) a.classList.add('thumbnail-selected');
     a.dataset.dispSrc = displayImg[0];
     a.dataset.dispAlt = displayImg[1];
@@ -41,11 +41,11 @@ function selectorTrayWithImgs(data, createTag) {
     a.addEventListener('click', async (e) => {
       e.preventDefault();
       const a = e.target.nodeName === 'A' ? e.target : e.target.closest('a');
-      e.target.closest('.tray-items').querySelector('a.tray-thumbnail-img').classList.add('thumbnail-selected');
       await data.openForExecution;
       data.displayPath = parseInt(a.dataset.dispPth);
       await data.handleImageTransition(data, {src: a.dataset.dispSrc, alt: a.dataset.dispAlt, useCfg: true});
       data.el.dispatchEvent(new CustomEvent(data.nextStepEvent));
+      e.target.closest('.tray-items').querySelector('a.tray-thumbnail-img').classList.add('thumbnail-selected');
     });
   });
   selectorTray.append(trayItems);
