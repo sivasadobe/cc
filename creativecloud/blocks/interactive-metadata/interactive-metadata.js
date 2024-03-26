@@ -244,19 +244,19 @@ export default async function init(el) {
 
   await handleNextStep(stepInfo);
   await renderLayer(stepInfo);
-  const options = {
-    rootMargin: "0px",
-    threshold: 1.0,
-  };
-  const callback = (entries) => {
-    entries.forEach((entry) => {
-      if(entry.isIntersecting) {
-        addAnimationToLayer(targetAsset);
-      }
-    });
-  };
-  const observer = new IntersectionObserver(callback, options);
-  observer.observe(targetAsset);
+  // const options = {
+  //   rootMargin: "0px",
+  //   threshold: 1.0,
+  // };
+  // const callback = (entries) => {
+  //   entries.forEach((entry) => {
+  //     if(entry.isIntersecting) {
+  //       addAnimationToLayer(targetAsset);
+  //     }
+  //   });
+  // };
+  // const observer = new IntersectionObserver(callback, options);
+  // observer.observe(targetAsset);
 
   el.addEventListener('cc:interactive-switch', async (e) => {
     await renderLayer(stepInfo);
