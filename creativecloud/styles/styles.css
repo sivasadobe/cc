@@ -19,42 +19,27 @@
   font-weight: bold;
   font-size: 28px;
   line-height: 28px;
+  margin: 0;
 }
 
-.interactive-enabled .foreground .image img[src*="svg"] {
-  width: auto;
-  height: 0;
-  position: absolute;
-}
-
-.interactive-enabled .foreground .image img[src*="media_"] {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.interactive-enabled .foreground .image > p:nth-child(1), 
+.interactive-enabled:not(.heading-top) .foreground .image > p:nth-child(1), 
 .interactive-enabled.heading-top .foreground .image > p:nth-child(2) {
   height: auto;
   margin-bottom: 16px;
 }
 
-.interactive-enabled .foreground .image > p:last-of-type {
-  height: 0;
-}
-
-.interactive-enabled .foreground .image > p > strong {
+.interactive-enabled .foreground .image > p > strong,
+.interactive-enabled .foreground .image > p img[src*="svg"] {
   display: none;
 }
 
-.interactive-enabled .foreground .image > p img[src*=".svg"] {
-  display: none;
+.interactive-enabled .foreground .image > p img[src*="media_"] {
+  width: 100%;
+  height: auto;
+  margin: auto;
 }
 
-.aside.interactive-enabled .foreground.container {
-  flex-direction: column;
-}
-
+.aside.interactive-enabled .foreground.container,
 .interactive-enabled .foreground.container .image {
   display: flex;
   flex-direction: column;
@@ -106,6 +91,10 @@
 }
 
 @media screen and (min-width: 1200px) {
+  .interactive-enabled .foreground .image {
+    margin-left: 60px
+  }
+
   .marquee.interactive-enabled .foreground.container,
   .aside.interactive-enabled .foreground.container {
     padding-top: 0;

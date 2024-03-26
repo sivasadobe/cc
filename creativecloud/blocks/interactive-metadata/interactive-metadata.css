@@ -20,7 +20,12 @@
   margin: auto;
 }
 
-.interactive-enabled .foreground .image > p img[src*=".svg"] {
+.interactive-enabled .foreground .image .enticement-arrow {
+  margin: 0;
+  height: 0;
+}
+
+.interactive-enabled .foreground .image .enticement-arrow img[src*=".svg"] {
   display: block;
   position: relative;
   width: 49px;

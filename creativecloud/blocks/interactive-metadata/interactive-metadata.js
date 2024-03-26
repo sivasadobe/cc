@@ -164,7 +164,6 @@ async function getTargetArea(el) {
   intEnb.classList.add('interactive-enabled');
   const assets = intEnb.querySelectorAll('.asset picture, .image picture');
   const iArea = createTag('div', { class: `interactive-holder show-image` });
-  // const pic = assets[assets.length - 1];
   const pic = assets[0];
   const newPic = pic.cloneNode(true);
   const p = createTag('p', {}, newPic);
@@ -184,8 +183,13 @@ async function getTargetArea(el) {
     },
     videoSource
   );
+  await loadImg(pic.querySelector('img'));
+  const emptyp = pic.closest('p');
   iArea.append(pic, video);
-  intEnb.querySelector('.asset, .image').append(iArea);
+  emptyp?.remove();
+  const assetArea = intEnb.querySelector('.asset, .image');
+  assetArea.append(iArea);
+  assetArea.querySelector(':scope > p img[src*="svg"]')?.closest('p').classList.add('enticement-arrow');
   return iArea;
 }
 
