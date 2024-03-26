@@ -12,11 +12,11 @@
 }
 
 .interactive-metadata,
-.interactive-enabled .layer {
+.aside.interactive-enabled .layer {
   display: none;
 }
 
-.interactive-enabled .foreground.container .interactive-holder {
+.aside.interactive-enabled .foreground.container .interactive-holder {
   margin: auto;
 }
 
@@ -39,7 +39,7 @@
   opacity: 1;
 }
 
-.interactive-enabled .layer.show-layer {
+.aside.interactive-enabled .layer.show-layer {
   display: block;
   position: relative;
   top: auto;
@@ -56,7 +56,7 @@
   z-index: 2;
 }
 
-.interactive-enabled .layer .gray-button {
+.aside.interactive-enabled .layer .gray-button {
   position: absolute;
   box-sizing: border-box;
   border-radius: 8px;
@@ -75,7 +75,7 @@
   user-select: none;
 }
 
-.interactive-enabled .layer-0 .gray-button .ia-circle {
+.aside.interactive-enabled .layer-0 .gray-button .ia-circle {
   position: absolute;
   left: 0;
   right: 0;
@@ -86,11 +86,11 @@
   border: 8px solid var(--prompt-highlight-color);
   border-radius: 50%;
   opacity: 0;
-  animation: circle 2700ms ease-in-out 500ms backwards infinite;
+  animation: circle 2700ms ease-in-out 500ms backwards 7;
 }
 
-.interactive-enabled .layer-0 .gray-button {
-  animation: outline-fill 2700ms 500ms forwards infinite;
+.aside.interactive-enabled .layer-0 .gray-button {
+  animation: outline-fill 2700ms 500ms forwards 7;
 }
 
 .aside.interactive-enabled .foreground.container .interactive-holder {
@@ -141,8 +141,8 @@
   }
 }
 
-.interactive-enabled .foreground.container .interactive-holder .layer .gray-button picture,
-.interactive-enabled .foreground.container .interactive-holder .layer .gray-button img {
+.aside.interactive-enabled .foreground.container .interactive-holder .layer .gray-button picture,
+.aside.interactive-enabled .foreground.container .interactive-holder .layer .gray-button img {
   width: 24px;
   height: auto;
   min-height: 24px;
@@ -150,18 +150,18 @@
   border-radius: 0;
 }
 
-.interactive-enabled .layer .gray-button:hover { 
+.aside.interactive-enabled .layer .gray-button:hover { 
   border: 3px solid var(--prompt-highlight-color);
   background: var(--prompt-btn-fill);
   animation-play-state: paused;
 } 
 
-.interactive-enabled .layer .gray-button:hover .ia-circle { 
+.aside.interactive-enabled .layer .gray-button:hover .ia-circle { 
   display: none;
 } 
 
 @media screen and (min-width: 600px) {
-  .interactive-enabled .interactive-holder {
+  .aside.interactive-enabled .interactive-holder {
     position: relative;
     height: 570px;
     width: 570px;
@@ -180,7 +180,7 @@
     border-radius: 16px;
   }
 
-  .interactive-enabled .layer.show-layer {
+  .aside.interactive-enabled .layer.show-layer {
     display: flex;
     position: absolute;
     top: auto;
@@ -191,8 +191,8 @@
     width: 570px;
   }
   
-  .interactive-enabled .foreground.container .interactive-holder .layer .gray-button picture,
-  .interactive-enabled .foreground.container .interactive-holder .layer .gray-button img {
+  .aside.interactive-enabled .foreground.container .interactive-holder .layer .gray-button picture,
+  .aside.interactive-enabled .foreground.container .interactive-holder .layer .gray-button img {
     width: 34px;
     height: auto;
     min-height: 34px;
@@ -200,13 +200,13 @@
     border-radius: 0;
   }
 
-  .interactive-enabled .layer .gray-button {
+  .aside.interactive-enabled .layer .gray-button {
     font-size: var(--type-body-xl-size); 
     line-height: var(--type-body-xl-lh);
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.32);
   }
 
-  .interactive-enabled .layer-0 .gray-button .ia-circle {
+  .aside.interactive-enabled .layer-0 .gray-button .ia-circle {
     width: 56px;
     height: 56px;
   }

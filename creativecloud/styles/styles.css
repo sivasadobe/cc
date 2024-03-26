@@ -15,12 +15,12 @@
   margin: 0 auto;
 }
 
-.interactive-enabled .foreground .image > h1,
-.interactive-enabled .foreground .image > h2,
-.interactive-enabled .foreground .image > h3,
-.interactive-enabled .foreground .image > h4,
-.interactive-enabled .foreground .image > h5,
-.interactive-enabled .foreground .image > h6 {
+.aside.interactive-enabled .foreground.container .image > h2,
+.aside.interactive-enabled .foreground.container .image > h1,
+.aside.interactive-enabled .foreground.container .image > h3,
+.aside.interactive-enabled .foreground.container .image > h4,
+.aside.interactive-enabled .foreground.container .image > h5,
+.aside.interactive-enabled .foreground.container .image > h6 {
   display: none;
   font-size: 36px;
   line-height: 45px;
@@ -33,8 +33,13 @@
   height: 0;
 }
 
-.interactive-enabled .foreground .image > h2 + p,
-.interactive-enabled .foreground .image > p:nth-child(1) {
+.aside.interactive-enabled .foreground.container .image > h2 + p,
+.aside.interactive-enabled .foreground.container .image > h3 + p,
+.aside.interactive-enabled .foreground.container .image > h1 + p,
+.aside.interactive-enabled .foreground.container .image > h4 + p,
+.aside.interactive-enabled .foreground.container .image > h5 + p,
+.aside.interactive-enabled .foreground.container .image > h6 + p,
+.aside.interactive-enabled .foreground.container .image > p:nth-child(1) {
   display: flex;
   flex-direction: row;
   height: auto;
@@ -80,7 +85,8 @@
 }
 
 @media screen and (min-width: 600px) {
-  .interactive-enabled .foreground .image {
+  .marquee.interactive-enabled .foreground.container .image,
+  .aside.interactive-enabled .foreground.container .image {
     margin-inline-start: 0;
     margin: auto;
   }
