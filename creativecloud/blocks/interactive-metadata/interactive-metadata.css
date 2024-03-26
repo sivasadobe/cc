@@ -23,6 +23,7 @@
 .interactive-enabled .foreground.container .interactive-holder > picture img,
 .interactive-enabled .foreground.container .interactive-holder > picture,
 .interactive-enabled .foreground.container .interactive-holder > video {
+  display: block;
   opacity: 0;
   height: 0;
   object-fit: cover;
@@ -33,7 +34,7 @@
 .interactive-enabled .foreground.container .interactive-holder.show-image > picture,
 .interactive-enabled .foreground.container .interactive-holder.show-video > video {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
   opacity: 1;
 }

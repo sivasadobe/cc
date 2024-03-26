@@ -74,6 +74,12 @@
     max-width: unset;
   }
 
+  [dir="rtl"] .interactive-enabled.generate-right .step-generate .generate-prompt-button, 
+  [dir="rtl"] .interactive-enabled .step-generate .generate-right .generate-prompt-button {
+    left: auto;
+    right: 285px;
+  }
+
   .interactive-enabled.generate-right .step-generate .generate-prompt-button,
   .interactive-enabled .step-generate .generate-right .generate-prompt-button {
     left: 285px;
@@ -83,6 +89,7 @@
 
   .interactive-enabled .step-generate .generate-text-container {
     width: 215px;
+    min-width: 215px;
     max-width: 215px;
     height: 64px;
   }
