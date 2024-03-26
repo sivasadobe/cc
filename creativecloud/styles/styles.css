@@ -40,7 +40,24 @@
   top: -30px;
   right: 30px;
   z-index: 2;
-} 
+}
+
+.aside.interactive-enabled .foreground.container {
+  flex-direction: column;
+}
+
+.aside.interactive-enabled .foreground.container .image {
+  display: flex;
+  flex-direction: column;
+}
+
+.interactive-enabled .foreground.container .image {
+  order: 1;
+}
+
+.interactive-enabled .foreground.container .text {
+  order: 2;
+}
 
 @media screen and (max-width: 600px) {
   .interactive-enabled.heading-top .foreground .image > p > strong {
@@ -95,8 +112,26 @@
     background: none;
     margin-bottom: 42px;
   }
+  
+  .aside.interactive-enabled .foreground.container {
+    flex-direction: row;
+  }
 
-  [dir="rtl"] .interactive-enabled .foreground.container .text {
+  .aside.interactive-enabled .foreground.container > div {
+    min-width: none;
+  }
+
+  [dir="rtl"] .interactive-enabled .foreground.container .text,
+  [dir="rtl"] .interactive-enabled.row-reversed .foreground.container .image,
+  .interactive-enabled .foreground.container .image,
+  .interactive-enabled.row-reversed .foreground.container .text {
+    order: 1;
+  }
+
+  [dir="rtl"] .interactive-enabled .foreground.container .image,
+  [dir="rtl"] .interactive-enabled.row-reversed .foreground.container .text,
+  .interactive-enabled .foreground.container .text,
+  .interactive-enabled.row-reversed .foreground.container .image {
     order: 2;
   }
 }

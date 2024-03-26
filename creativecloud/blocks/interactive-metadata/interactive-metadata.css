@@ -213,9 +213,11 @@
 }
 
 @media screen and (max-width: 1200px) {
-  .aside .foreground.container {
+  /* .aside .foreground.container {
     flex-direction: column-reverse !important;
-  }
+    We need this to be set to column as column reversed is messing up the stacking in aside
+    We can probably discuss if we need this but currently tests look good without this with proposed authoring
+  } */
 }
 
 
