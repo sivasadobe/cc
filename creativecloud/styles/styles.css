@@ -132,4 +132,8 @@
     right: 109px;
     top: -70px;
   } 
+
+  [dir="rtl"] .interactive-enabled .foreground.container .text {
+    order: 2;
+  }
 }
