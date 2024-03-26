@@ -86,11 +86,6 @@
   border: 8px solid var(--prompt-highlight-color);
   border-radius: 50%;
   opacity: 0;
-  animation: circle 2700ms ease-in-out 500ms backwards infinite;
-}
-
-.interactive-enabled .layer-0 .gray-button {
-  animation: outline-fill 2700ms 500ms forwards infinite;
 }
 
 .aside.interactive-enabled .foreground.container .interactive-holder {
