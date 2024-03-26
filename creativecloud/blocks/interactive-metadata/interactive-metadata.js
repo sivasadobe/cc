@@ -154,6 +154,8 @@ async function addBtnAnimation(ia) {
   [...btns].forEach((btn) => {
     const circle = createTag('div', { class: 'ia-circle' });
     btn.append(circle);
+    btn.style.animation = 'outline-fill 2700ms 500ms forwards 7';
+    circle.style.animation = 'circle 2700ms ease-in-out 500ms backwards 7';
     btn.addEventListener('mouseover', (e) => {
       removeAnimation(ia);
     });
@@ -242,7 +244,19 @@ export default async function init(el) {
 
   await handleNextStep(stepInfo);
   await renderLayer(stepInfo);
-  addAnimationToLayer(targetAsset);
+  const options = {
+    rootMargin: "0px",
+    threshold: 1.0,
+  };
+  const callback = (entries) => {
+    entries.forEach((entry) => {
+      if(entry.isIntersecting) {
+        addAnimationToLayer(targetAsset);
+      }
+    });
+  };
+  const observer = new IntersectionObserver(callback, options);
+  observer.observe(targetAsset);
 
   el.addEventListener('cc:interactive-switch', async (e) => {
     await renderLayer(stepInfo);
