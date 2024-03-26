@@ -29,6 +29,10 @@
   height: 28px;
 }
 
+.interactive-enabled .foreground.container .image {
+  padding-bottom: 0;
+}
+
 .interactive-enabled .foreground .image .enticement-text {
   display: block;
   max-width: 30ch;
