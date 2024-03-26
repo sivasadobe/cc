@@ -36,10 +36,8 @@
 .interactive-enabled .foreground .image .enticement-text {
   display: block;
   max-width: 30ch;
-  /* position: absolute; */
   font-size: 28px;
   line-height: 35px;
-  /* top: -90px; */
   color: var(--color-white);
 }
 

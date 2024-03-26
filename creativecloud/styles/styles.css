@@ -67,7 +67,7 @@
   .interactive-enabled.heading-top .foreground .text > h4,
   .interactive-enabled.heading-top .foreground .text > h5,
   .interactive-enabled.heading-top .foreground .text > h6 {
-    display: none;
+    display: none !important;
   }
 
   .interactive-enabled.mobile-hide-enticement:not(.heading-top) .foreground .image > p:nth-child(1), 
