@@ -5,7 +5,8 @@
   justify-content: space-between;
   font-weight: bold;
   margin: auto;
-  max-width: 290px;
+  padding: 0 10px;
+  width: 100%;
 }
 
 
@@ -20,9 +21,11 @@
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.32);
   white-space: nowrap;
   overflow: hidden;
+  width: 100%;
 }
 
 [dir="rtl"] .interactive-enabled .step-generate .generate-text-container {
+  width: 100%;
   border-radius: 0 8px 8px 0;
 }
 
@@ -55,7 +58,7 @@
   gap: 2px;
   border-radius: 0 8px 8px 0;
   padding: 0 var(--spacing-xs);
-  min-width: 121px;
+  max-width: 50%;
 }
 
 [dir="rtl"] .interactive-enabled .step-generate .generate-prompt-button .gray-button.generate-button {
@@ -67,6 +70,7 @@
     position: absolute;
     left: 83px;
     bottom: 64px;
+    width: auto;
     max-width: unset;
   }
 
@@ -78,6 +82,8 @@
   }
 
   .interactive-enabled .step-generate .generate-text-container {
+    width: 215px;
+    max-width: 215px;
     height: 64px;
   }
 
@@ -87,9 +93,6 @@
 
   .interactive-enabled .step-generate .generate-prompt-button .generate-text {
     height: 52px;
-    width: 183px;
-    min-width: 183px;
-    max-width: 183px;
     line-height: 52px;
     padding: 0 16px;
     text-align: start;
