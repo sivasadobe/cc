@@ -244,19 +244,18 @@ export default async function init(el) {
 
   await handleNextStep(stepInfo);
   await renderLayer(stepInfo);
-  const options = {
-    rootMargin: "0px",
-    threshold: 1.0,
+
+  const miloLibs = getLibs('/libs');
+  const { createIntersectionObserver } = await import(`${miloLibs}/utils/utils.js`);
+  
+
+  const options = { threshold: 1.0 };
+  const callback = (target, entry) => {
+    if(entry.isIntersecting) {
+      addAnimationToLayer(targetAsset);
+    }
   };
-  const callback = (entries) => {
-    entries.forEach((entry) => {
-      if(entry.isIntersecting) {
-        addAnimationToLayer(targetAsset);
-      }
-    });
-  };
-  const observer = new IntersectionObserver(callback, options);
-  observer.observe(targetAsset);
+  if(targetAsset) createIntersectionObserver({ el: targetAsset, callback: callback, options: options } );
 
   el.addEventListener('cc:interactive-switch', async (e) => {
     await renderLayer(stepInfo);
