@@ -244,6 +244,7 @@ export default async function init(el) {
 
   await handleNextStep(stepInfo);
   await renderLayer(stepInfo);
+<<<<<<< HEAD
   // const options = {
   //   rootMargin: "0px",
   //   threshold: 1.0,
@@ -257,6 +258,20 @@ export default async function init(el) {
   // };
   // const observer = new IntersectionObserver(callback, options);
   // observer.observe(targetAsset);
+=======
+
+  const miloLibs = getLibs('/libs');
+  const { createIntersectionObserver } = await import(`${miloLibs}/utils/utils.js`);
+  
+
+  const options = { threshold: 1.0 };
+  const callback = (target, entry) => {
+    if(entry.isIntersecting) {
+      addAnimationToLayer(targetAsset);
+    }
+  };
+  if(targetAsset) createIntersectionObserver({ el: targetAsset, callback: callback, options: options } );
+>>>>>>> cdfec728cf5c8e499657f16faacf48a8b6b04032
 
   el.addEventListener('cc:interactive-switch', async (e) => {
     await renderLayer(stepInfo);
