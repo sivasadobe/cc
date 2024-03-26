@@ -27,7 +27,7 @@
 .interactive-enabled .step-selector-tray .selector-tray .tray-items a.tray-thumbnail-img {
   position: relative;
   display: block;
-  width: 80px;
+  width: calc(30%);
   height: 80px;
   min-height: 80px;
   overflow: hidden;
@@ -36,7 +36,7 @@
 
 .interactive-enabled .step-selector-tray .selector-tray .tray-items a.tray-thumbnail-img.thumbnail-selected,
 .interactive-enabled .step-selector-tray .selector-tray .tray-items a.tray-thumbnail-img:hover {
-  width: 70px;
+  width: calc(30% - 10px);
   height: 70px;
   min-height: 70px;
   border: 5px solid var(--prompt-highlight-color);
