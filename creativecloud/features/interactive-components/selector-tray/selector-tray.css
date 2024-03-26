@@ -9,6 +9,8 @@
   background: var(--prompt-input-fill);
   border-radius: 0 0 8px 8px;
   font-weight: bold;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .interactive-enabled.light .step-selector-tray .selector-tray {
@@ -63,6 +65,8 @@
     gap: 16px;
     border-radius: 9px;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.32);
+    box-sizing: content-box;
+    width: auto;
   }
 
   .interactive-enabled .step-selector-tray .selector-tray .tray-items {

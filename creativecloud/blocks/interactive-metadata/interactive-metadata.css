@@ -23,10 +23,10 @@
 .interactive-enabled .foreground.container .interactive-holder > picture img,
 .interactive-enabled .foreground.container .interactive-holder > picture,
 .interactive-enabled .foreground.container .interactive-holder > video {
-  border-radius: 8px 8px 0 0;
-  object-fit: cover;
   opacity: 0;
   height: 0;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
 }
 
 .interactive-enabled .foreground.container .interactive-holder.show-image > picture img,
@@ -34,6 +34,7 @@
 .interactive-enabled .foreground.container .interactive-holder.show-video > video {
   width: 100%;
   height: auto;
+  object-fit: cover;
   opacity: 1;
 }
 
@@ -169,8 +170,12 @@
   .interactive-enabled .foreground.container .interactive-holder > picture img,
   .interactive-enabled .foreground.container .interactive-holder > picture,
   .interactive-enabled .foreground.container .interactive-holder > video {
-    height: 570px;
-    width: 570px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
     border-radius: 16px;
   }
 
