@@ -167,7 +167,7 @@ function intEnbReendered(targetBlock) {
         res();
         clearInterval(interval);
       }
-    }, 200);
+    }, 100);
     
   });
 }
