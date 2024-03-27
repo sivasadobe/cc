@@ -156,13 +156,30 @@ async function implementWorkflow(stepInfo) {
   await handleNextStep(stepInfo);
 }
 
+
+function intEnbReendered(targetBlock) {
+  return new Promise((res, rej) => {
+    if (targetBlock.querySelector('.text') && targetBlock.querySelector('.image')) {
+      res();
+    }
+    const interval = setInterval(() => {
+      if (targetBlock.querySelector('.text') && targetBlock.querySelector('.image')) {
+        res();
+        clearInterval(interval);
+      }
+    }, 200);
+    
+  });
+}
+
 async function getTargetArea(el) {
   const miloLibs = getLibs('/libs');
   const { createTag } = await import(`${miloLibs}/utils/utils.js`);
   const metadataSec = el.closest('.section');
   const previousSection = metadataSec.previousElementSibling;
-  const intEnb = previousSection.querySelector('.marquee, .aside');
+  const intEnb = metadataSec.querySelector('.marquee, .aside');
   if (!intEnb) return;
+  await intEnbReendered(intEnb);
   intEnb.classList.add('interactive-enabled');
   const assets = intEnb.querySelectorAll('.asset picture, .image picture');
   const iArea = createTag('div', { class: `interactive-holder show-image` });
