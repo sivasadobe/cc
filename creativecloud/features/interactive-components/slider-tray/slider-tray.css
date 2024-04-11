@@ -248,7 +248,7 @@
   display: none;
 }
 
-.interactive-enabled .step-slider-tray .sliderTray .svg-icon-container {
+.interactive-enabled .step-slider-tray .svg-icon-container {
   height: 18px;
   width: 18px;
 }
@@ -319,16 +319,17 @@
    display: none;
  }
 
- .interactive-enabled .step-slider-tray .sliderTray .svg-icon-container {
+ .interactive-enabled .step-slider-tray .svg-icon-container {
    display: flex;
    align-items: center;
    justify-content: center;
    height: 34px;
    width: 34px;
    border-radius: 3px;
+   flex-shrink: 0;
  }
  
- .interactive-enabled .step-slider-tray .sliderTray .continueButton {
+ .interactive-enabled .step-slider-tray .continueButton {
    position: absolute;
    top: 85%;
    display: flex;
@@ -338,21 +339,25 @@
    text-decoration: none;
    color: var(--prompt-btn-fill-light) !important;
    font-weight: bold;
-   padding: 12px 24px;
+   padding: 12px 56px;
    align-items: center;
    justify-content: center;
-   width: 60%;
+   width: 45%;
    left: 50%;
+   font-size: 21px;
    transform: translateX(-50%);
    cursor: pointer;
+   border: 2px solid transparent;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
  }
 
- .interactive-enabled .step-slider-tray .sliderTray .continueButton.hide {
+ .interactive-enabled .step-slider-tray .continueButton.hide {
    display: none;
  }
 
- .interactive-enabled .step-slider-tray .sliderTray .continueButton:hover {
-   color: #1273E6 !important;
-   background: var(--prompt-btn-fill-light);
+ .interactive-enabled .step-slider-tray .continueButton:hover {
+   border: 2px solid var(--prompt-btn-fill-light);
  }
 }
