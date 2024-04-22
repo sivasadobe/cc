@@ -231,17 +231,15 @@ function continueToPs(media, layer, imgObj) {
           },
         },
       ];
-      const continueToPsObj = {
-        psUrl: '',
-        filename: imgObj.fileName,
-        fileData: {
-          filename: imgObj.fileName,
-          imageData: imgObj.imgSrc,
-        },
-        actionJSON: actionJSONData,
-      }
-      const { default: openInPsWeb } = await import('../../../deps/continueToPs/continueToPs.js');
-      openInPsWeb(continueToPsObj);
+      const psurls = [
+        'https://photoshop.adobe.com',
+        'https://dev.photoshop.adobe.com',
+        'https://pr.photoshop.adobe.com/discover?PR=47381',
+        'https://localhost.corp.adobe.com:3000',
+      ]
+      const { openInPsWeb } = await import('../../../deps/continueToPs/continueToPs.js');
+      console.log(openInPsWeb);
+      openInPsWeb(psurls[2], imgObj.fileName, [{ filename: imgObj.fileName, imageData: imgObj.imgSrc }], actionJSONData);
     });
   });
 }
