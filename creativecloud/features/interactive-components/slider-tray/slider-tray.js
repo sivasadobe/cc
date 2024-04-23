@@ -64,7 +64,7 @@ function observeSliderTray(sliderTray, targets) {
   io.observe(sliderTray);
 }
 
-function createSlider(sliderType, details, menu, sliderTray) {
+async function createSlider(sliderType, details, menu, sliderTray) {
   const [label, min, max] = details.split('|').map((item) => item.trim());
   const sliderLabel = createTag('label', { for: `${sliderType}` }, label);
   const sliderContainer = createTag('div', { class: `sliderContainer ${sliderType.toLowerCase()}` });
@@ -87,7 +87,7 @@ function createSlider(sliderType, details, menu, sliderTray) {
   applyAccessibility(input, outerCircle);
 }
 
-function createUploadButton(details, picture, sliderTray, menu) {
+async function createUploadButton(details, picture, sliderTray, menu) {
   const currentVP = defineDeviceByScreenSize().toLocaleLowerCase();
   const btn = createTag('input', { class: 'inputFile', type: 'file', accept: 'image/*' });
   const labelBtn = createTag('a', { class: `uploadButton body-${currentVP === 'mobile' ? 'm' : 'xl'}` }, details);
@@ -234,12 +234,12 @@ function continueToPs(media, layer, imgObj) {
       const psurls = [
         'https://photoshop.adobe.com',
         'https://dev.photoshop.adobe.com',
-        'https://pr.photoshop.adobe.com/discover?PR=47381',
+        'https://pr.photoshop.adobe.com/?PR=48898',
         'https://localhost.corp.adobe.com:3000',
       ]
-      const { openInPsWeb } = await import('../../../deps/continueToPs/continueToPs.js');
-      console.log(openInPsWeb);
-      openInPsWeb(psurls[2], imgObj.fileName, [{ filename: imgObj.fileName, imageData: imgObj.imgSrc }], actionJSONData);
+      const { openInPsWeb } = await import('../../../deps/continueToPs/openInPsWeb.js');
+      const imageData = await (await fetch(imgObj.imgSrc)).blob(); 
+      openInPsWeb(psurls[1], imgObj.fileName, [{ filename: imgObj.fileName, imageData }], actionJSONData);
     });
   });
 }
