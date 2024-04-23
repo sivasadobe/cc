@@ -10,6 +10,7 @@ export default async function stepInit(data) {
   sliderEvent(data.target, layer, imgObj);
   uploadImage(data.target, layer, imgObj);
   continueToPs(data.target, layer, imgObj);
+  console.log('1');
   return layer;
 }
 
@@ -20,6 +21,7 @@ function createSelectorTray(data, layer) {
   const options = config.querySelectorAll(':scope > div ul .icon, :scope > div ol .icon');
   [...options].forEach((o) => { handleInput(o, sliderTray, menu, layer); });
   layer.append(sliderTray);
+  console.log('2');
   observeSliderTray(sliderTray, data.target, menu);
 }
 
@@ -64,7 +66,7 @@ function observeSliderTray(sliderTray, targets) {
   io.observe(sliderTray);
 }
 
-async function createSlider(sliderType, details, menu, sliderTray) {
+function createSlider(sliderType, details, menu, sliderTray) {
   const [label, min, max] = details.split('|').map((item) => item.trim());
   const sliderLabel = createTag('label', { for: `${sliderType}` }, label);
   const sliderContainer = createTag('div', { class: `sliderContainer ${sliderType.toLowerCase()}` });
@@ -85,9 +87,10 @@ async function createSlider(sliderType, details, menu, sliderTray) {
     e.preventDefault();
   });
   applyAccessibility(input, outerCircle);
+  console.log('3');
 }
 
-async function createUploadButton(details, picture, sliderTray, menu) {
+function createUploadButton(details, picture, sliderTray, menu) {
   const currentVP = defineDeviceByScreenSize().toLocaleLowerCase();
   const btn = createTag('input', { class: 'inputFile', type: 'file', accept: 'image/*' });
   const labelBtn = createTag('a', { class: `uploadButton body-${currentVP === 'mobile' ? 'm' : 'xl'}` }, details);
@@ -99,6 +102,7 @@ async function createUploadButton(details, picture, sliderTray, menu) {
   menu.append(clone);
   sliderTray.append(labelBtn);
   applyAccessibility(btn, labelBtn);
+  console.log('4');
 }
 
 function applyAccessibility(inputEle, target) {
@@ -123,6 +127,7 @@ function createUploadPSButton(details, picture, layer) {
   const btn = createTag('a', { class: 'continueButton body-xl hide' }, details);
   appendSVGToButton(picture, btn);
   layer.append(btn);
+  console.log('5');
 }
 
 function appendSVGToButton(picture, button) {
