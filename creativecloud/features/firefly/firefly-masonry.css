@@ -2,6 +2,10 @@
 /* stylelint-disable property-no-vendor-prefix */
 /* stylelint-disable value-no-vendor-prefix */
 /* stylelint-disable selector-no-vendor-prefix */
+.interactive-marquee.ff-masonry .foreground {
+  width: var(--grid-container-width);
+}
+
 .ff-masonry .mobile-only,
 .ff-masonry .grid-layout {
   display: none;
@@ -343,6 +347,7 @@
     display: block;
     margin-top: 112px;
     max-width: 635px;
+    margin-inline-start: calc((50vw - 635px) / 2);
   }
 
   .ff-masonry .grid-layout .grid-container {
@@ -380,7 +385,7 @@
   .ff-masonry-prompt {
     top: 350px;
     margin-inline-start: 80px;
-    width: 100%
+    width: auto;
   }
 
  .ff-masonry .interactive-container .image-content > p {
