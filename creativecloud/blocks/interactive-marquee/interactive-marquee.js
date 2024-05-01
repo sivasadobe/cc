@@ -91,7 +91,6 @@ export default async function init(el) {
       break;
     }
     case el.classList.contains('genfill'): {
-      loadStyle('/creativecloud/blocks/interactive-marquee/milo-marquee.css');
       loadStyle('/creativecloud/features/genfill/genfill-interactive.css');
       interactiveInit(el, decorateButtons, decorateBlockBg, createTag);
       const { default: decorateGenfill } = await import('../../features/genfill/genfill-interactive.js');
