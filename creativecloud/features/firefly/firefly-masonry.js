@@ -87,7 +87,8 @@ function processMasonryMedia(gridDiv, allP, mediaDetail) {
   handleTouchDevice(mediaContainer, 2000);
 
   const spanWidth = mediaDetail.spans[lastIndex];
-  mediaContainer.classList.add(`ff-grid-${spanWidth?.trim().replace(' ', '-')}`);
+  const spanClass = spanWidth === undefined ? 'span-4' : `${spanWidth?.trim().replace(' ', '-')}`
+  mediaContainer.classList.add(`ff-grid-${spanClass}`);
   gridDiv.appendChild(mediaContainer);
 }
 
