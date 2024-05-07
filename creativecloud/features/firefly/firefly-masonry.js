@@ -182,11 +182,9 @@ export default async function setMultiImageMarquee(el) {
       const src = getImgSrc(s);
       const prompt = allP[[...allP].indexOf(s) + 1].innerText;
       const { href } = allP[[...allP].indexOf(s) + 1].querySelector('a');
-      let [, alt, span] = s.querySelector('img').getAttribute('alt').split('|');
-      if (!alt && !span) {
-        alt = '';
-        span = s.querySelector('img').getAttribute('alt');
-      }
+      const alt = s.querySelector('img').getAttribute('alt');
+      const span = allP[[...allP].indexOf(s) - 1].querySelector('span').getAttribute('class').split('icon-')[1];
+ 
       mediaDetail.imgSrc.push(src);
       mediaDetail.prompt.push(prompt);
       mediaDetail.href.push(href);
